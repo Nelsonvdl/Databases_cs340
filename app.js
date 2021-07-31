@@ -40,7 +40,7 @@ var db = mysql.createPool({
 */
 
 // GET ROUTES
-app.get('/galaies', function(req, res)
+app.get('/galaxies_test', function(req, res)
 {
     // Declare Query 1
     let query1 = "SELECT * FROM galaxies;";
