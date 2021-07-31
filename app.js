@@ -39,6 +39,10 @@ var db = mysql.createPool({
     ROUTES
 */
 
+app.get('/', function(rec, res){
+  res.render('index');
+});
+
 // GET ROUTES
 app.get('/galaxies_test', function(req, res)
 {
