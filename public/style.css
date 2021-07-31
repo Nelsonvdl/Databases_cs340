@@ -1,0 +1,187 @@
+body {
+  font-family: Roboto, Helvetica, sans-serif;
+  margin: 0;
+  background-image: url("spacebg.jpg");
+}
+
+a {
+  text-decoration: none;
+}
+
+.site-title {
+  margin: 0;
+  padding: 10px 40px;
+  font-size: 30px;
+  font-weight: 100;
+  color: #fff;
+}
+
+.navbar {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.navlist {
+  margin: 0 0 0 20px;
+  padding: 0;
+}
+
+.navitem {
+  display: inline-block;
+}
+
+a {
+  color: #e7e7e7;
+}
+
+a:hover,
+a:focus {
+  color: #aaaaaa;
+}
+
+a:focus {
+  outline: none;
+}
+
+.NASA-link {
+  color:rgb(248, 225, 174)
+}
+
+.navlink a {
+  padding: 8px 10px;
+  display: inline-block;
+}
+
+.home-content {
+  color: rgb(221, 221, 221);
+  padding: 40px;
+  width: 50%;
+}
+
+.navlink.active {
+  box-shadow: inset 0 -3px #ffffff;
+}
+
+.data-table {
+  color:#fff;
+  border-collapse: collapse;
+  border-spacing:0px;
+  width: 600px;
+  padding: 40px 60px;
+  padding-right: 0px;
+  display: inline-block;
+}
+
+.add-value{
+  margin-top: 35px;
+  margin-left: 80px;
+  height: 200px;
+  display:inline-block;
+  color: white;
+  background-color:rgb(17, 19, 44);
+  padding: 10px;
+
+}
+
+.exoplanet-add {
+  flex: wrap;
+  margin-left:500px;
+  height: 300px;
+  display: block;
+}
+
+.add-value-list {
+  list-style-type: none;
+  margin: auto;
+  text-align: center;
+  padding: 0px 10px;
+}
+
+.input-element {
+  padding: 4px 0px;
+}
+
+#attribute-input {
+  color:rgb(255, 255, 255);
+  border: 1px solid rgba(238, 238, 238, 0);
+  cursor: pointer;
+  background-color: rgb(194, 194, 194);
+  background: none;
+
+}
+
+#attribute-input:hover {
+  color:rgb(17, 19, 44);
+  border: 1px solid rgba(238, 238, 238, 0);
+  cursor: pointer;
+  background-color: rgb(194, 194, 194);
+  border-radius: 5px;
+
+}
+
+#attribute-input:focus {
+  color:rgb(63, 63, 63);
+  border: 1px solid #eee;
+  cursor: pointer;
+  background-color: rgb(194, 194, 194);
+  border-radius: 5px;
+
+}
+
+td {
+  text-align: center;
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(17, 19, 44);
+  color: white;
+}
+
+tr:nth-child(odd) {
+  background-color: rgb(87, 87, 90);
+}
+
+tr:nth-child(1) {
+  text-align: center;
+  padding: 30px;
+  background-color:rgba(255, 255, 255, 0)
+}
+
+#delete-item-button {
+  background-color: rgb(230, 78, 78);
+  border: none;
+  color: white;
+}
+
+#delete-item-button:hover {
+  cursor: pointer;
+  color:rgb(214, 214, 214);
+  background-color: rgb(230, 78, 78);
+}
+
+#create-item-button {
+  width: 80px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  background-color: #41b163;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+#create-item-button:hover,
+#create-item-button:focus {
+  background-color: #1b703c;
+}
+
+#create-item-button:focus {
+  outline: none;
+}
+
+.home-body {
+  display: flex;
+}
+
+

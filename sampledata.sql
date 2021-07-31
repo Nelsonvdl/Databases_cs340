@@ -38,7 +38,7 @@ CREATE TABLE exoplanets (
   mass INT(11),
   orbitalPeriod INT(11),
   discovery INT
- );
+);
 
 INSERT INTO exoplanets VALUES (1, 2, 'DS Tuc A b', 2, NULL, 8.138268, 2019), (2, 3, 'GJ 1252 b', 1, 0.00858, 0.5182349, 2020),
 (3, 4, 'HD 21749 c', 1, 0.68, 7.78993, 2019), (4, 4, 'GJ 143 b', 1, 2.61, 35.61253, 2019);

@@ -8,10 +8,8 @@ var app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-PORT = 9125;
-
-// Database
-var db = require('./database/db-connector');
+// Static Files
+app.use(express.static('public'));
 
 // Handlebars
 var exphbs = require('express-handlebars');
@@ -21,142 +19,93 @@ app.engine('.hbs', exphbs({
 }));
 app.set('view engine', '.hbs');
 
-// Static Files
-app.use(express.static('public'));
+
+PORT = 9125;
+
+// Database
+// Get an instance of mysql we can use in the app
+var mysql = require('mysql')
+
+// Create a 'connection pool' using the provided credentials
+var db = mysql.createPool({
+  connectionLimit : 10,
+  host            : 'classmysql.engr.oregonstate.edu',
+  user            : 'cs340_crawzach',
+  password        : '3652',
+  database        : 'cs340_crawzach'
+});
 
 /*
     ROUTES
 */
 
 // GET ROUTES
-app.get('/', function(req, res)
+app.get('/galaies', function(req, res)
 {
     // Declare Query 1
-    let query1;
-
-    // If there is no query string, we just perform a basic SELECT
-    if (req.query.lname === undefined)
-    {
-        query1 = "SELECT * FROM bsg_people;";
-    }
-
-    // If there is a query string, we assume this is a search, and return desired results
-    else
-    {
-        query1 = `SELECT * FROM bsg_people WHERE lname LIKE "${req.query.lname}%"`
-    }
-
-    // Query 2 is the same in both cases
-    let query2 = "SELECT * FROM bsg_planets;";
+    let query1 = "SELECT * FROM galaxies;";
 
     // Run the 1st query
-    db.pool.query(query1, function(error, rows, fields){
-        
-        // Save the people
-        let people = rows;
-        
-        // Run the second query
-        db.pool.query(query2, (error, rows, fields) => {
-            
-            // Save the planets
-            let planets = rows;
+    db.query(query1, function(error, rows, fields){
 
-            // Construct an object for reference in the table
-            // Array.map is awesome for doing something with each
-            // element of an array.
-            let planetmap = {}
-            planets.map(planet => {
-                let id = parseInt(planet.id, 10);
-
-                planetmap[id] = planet["name"];
-            })
-
-            // Overwrite the homeworld ID with the name of the planet in the people object
-            people = people.map(person => {
-                return Object.assign(person, {homeworld: planetmap[person.homeworld]})
-            })
-
-            return res.render('index', {data: people, planets: planets});
-        })
-    })
+        // Save the galaxies
+        console.log(rows);
+        let galaxies = rows;
+        galaxy_string = JSON.stringify(galaxies)
+        return res.send(galaxy_string);
+      });
 });
 
-// POST ROUTES
-app.post('/add-person-ajax', function(req, res) 
+app.get('/hostSystems', function(req, res)
 {
-    // Capture the incoming data and parse it back to a JS object
-    let data = req.body;
+    // Declare Query 1
+    let query1 = "SELECT * FROM hostSystems;";
 
-    // Capture NULL values
-    let homeworld = parseInt(data.homeworld);
-    if (isNaN(homeworld))
-    {
-        homeworld = 'NULL'
-    }
+    // Run the 1st query
+    db.query(query1, function(error, rows, fields){
 
-    let age = parseInt(data.age);
-    if (isNaN(age))
-    {
-        age = 'NULL'
-    }
-
-    // Create the query and run it on the database
-    query1 = `INSERT INTO bsg_people (fname, lname, homeworld, age) VALUES ('${data.fname}', '${data.lname}', ${homeworld}, ${age})`;
-    db.pool.query(query1, function(error, rows, fields){
-
-        // Check to see if there was an error
-        if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error)
-            res.sendStatus(400);
-        }
-        else
-        {
-            // If there was no error, perform a SELECT * on bsg_people
-            query2 = `SELECT * FROM bsg_people;`;
-            db.pool.query(query2, function(error, rows, fields){
-
-                let people = rows;
-
-                // If there was an error on the second query, send a 400
-                if (error) {
-                    
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-                    console.log(error);
-                    res.sendStatus(400);
-                }
-                // If all went well, send the results of the query back.
-                else
-                {
-                    // If there was no error, perform a SELECT * on bsg_planets
-                    query3 = `SELECT * FROM bsg_planets;`;
-                    db.pool.query(query3, function(error, rows, fields){
-                        
-                        // Save the planets
-                        let planets = rows;
-
-                        // Construct an object for reference in the table
-                        // Array.map is awesome for doing something with each
-                        // element of an array.
-                        let planetmap = {}
-                        planets.map(planet => {
-                            let id = parseInt(planet.id, 10);
-
-                            planetmap[id] = planet["name"];
-                        })
-
-                        people = people.map(person => {
-                            return Object.assign(person, {homeworld: planetmap[person.homeworld]})
-                        })
-
-                        res.send(people);
-                    })
-                }
-            })
-        }
-    })
+        // Save the hostSystems
+        console.log(rows);
+        let hostSystems = rows;
+        hostSystems_string = JSON.stringify(hostSystems)
+        return res.send(hostSystems);
+      });
 });
+
+
+app.get('/stars', function(req, res)
+{
+    // Declare Query 1
+    let query1 = "SELECT * FROM stars;";
+
+    // Run the 1st query
+    db.query(query1, function(error, rows, fields){
+
+        // Save the stars
+        console.log(rows);
+        let stars = rows;
+        star_string = JSON.stringify(stars)
+        return res.send(star_string);
+      });
+});
+
+app.get('/exoplanets', function(req, res)
+{
+    // Declare Query 1
+    let query1 = "SELECT * FROM exoplanets;";
+
+    // Run the 1st query
+    db.query(query1, function(error, rows, fields){
+
+        // Save the exoplanets
+        console.log(rows);
+        let planets = rows;
+        planets_string = JSON.stringify(planets)
+        return res.send(planets_string);
+      });
+});
+
+
 
 app.post('/add-person-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object

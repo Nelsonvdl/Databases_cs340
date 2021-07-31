@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <title>Team Orion</title>
+
+    <!-- This is a 3rd-party stylesheet to make available the font family to be used for this page ("Roboto"). -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap" rel="stylesheet">
+
+    <!-- This 3rd-party stylesheet incorporates SVG icons from Font Awesome: http://fontawesome.com/ -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css" media="screen">
+
+    <script src="index.js" charset="utf-8" defer></script>
+
+  </head>
+
+  <body>
+
+    <header>
+      <!-- The <i> tag below includes the lizard hand icon from Font Awesome.  Do not directly style this element. -->
+      <a href="#"><h1 class="site-title">Team Orion</h1></a>
+
+      <nav class="navbar">
+        <ul class="navlist">
+          <li class="navitem navlink"><a href="index.html">Home</a></li>
+          <li class="navitem navlink active"><a href="exoplanets.html">Exo Planets</a></li>
+          <li class="navitem navlink"><a href="hostSystems.html">Host Systems</a></li>
+          <li class="navitem navlink"><a href="stars.html">Stars</a></li>
+          <li class="navitem navlink"><a href="galaxies.html">Galaxies</a></li>
+          <li class="navitem navlink"><a href="EPSRelation.html">Exo Planet Star Relationship</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="home-body">
+        <div class = "data-table">
+            <table id="planetTable">
+                <tr>
+                    <th>planetID</th><th>name</th><th>hostSystemID</th><th>numberofStars</th><th>mass</th><th>orbitalPeriod</th><th>discovery</th><th>planetRadius</th><th class = "delete-row">Delete Row</th>
+                </tr>
+                <tr>
+                    <td>testID1</td><td>test_name1</td><td>test_sysID1</td><td>test_numStar1</td><td>test_mass1</td><td>test_orbitalPeriod1</td><td>test_discov1</td><td>test_planetRadius1</td><td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
+                </tr>
+                <tr>
+                    <td>testID2</td><td>test_name2</td><td>test_sysID2</td><td>test_numStar2</td><td>test_mass2</td><td>test_orbitalPeriod2</td><td>test_discov2</td><td>test_planetRadius2</td><td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
+                </tr>
+                <tr>
+                    <td>testID3</td><td>test_name3</td><td>test_sysID3</td><td>test_numStar3</td><td>test_mass3</td><td>test_orbitalPeriod3</td><td>test_discov3</td><td>test_planetRadius3</td><td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
+                </tr>
+                <tr>
+                    <td>testID4</td><td>test_name4</td><td>test_sysID4</td><td>test_numStar4</td><td>test_mass4</td><td>test_orbitalPeriod4</td><td>test_discov4</td><td>test_planetRadius4</td><td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
+                </tr>
+            </table>
+        </div>
+        <div class = "add-value exoplanet-add">
+          <ul class = "add-value-list">
+            <li>
+              <p> Add Entry to Table</p>
+            </li>
+            <li>
+              <div class="input-element">
+                <input type="text" id="attribute-input" placeholder="Planet Name..." class ="planetName">
+              </div>
+            </li>
+            <li>
+              <div class="input-element">
+                <input type="text" id="attribute-input" placeholder="System Foreign Key..." class ="HSFK">
+              </div>
+            </li>
+            <li>
+              <div class="input-element">
+                <input type="text" id="attribute-input" placeholder="Number of Stars..." class ="numStars">
+              </div>
+            </li>
+            <li>
+              <div class="input-element">
+                <input type="text" id="attribute-input" placeholder="Mass..." class ="mass">
+              </div>
+            </li>
+            <li>
+              <div class="input-element">
+                <input type="text" id="attribute-input" placeholder="Orbital Period..." class ="orbitalPeriod">
+              </div>
+            </li>
+            <li>
+              <div class="input-element">
+                <input type="text" id="attribute-input" placeholder="Discovery..." class ="discovery">
+              </div>
+            </li>
+            <li>
+              <div class="input-element">
+                <input type="text" id="attribute-input" placeholder="Planet Radius..." class ="radius">
+              </div>
+            </li>
+            <li>
+              <div class="input-element">
+                <button type="button" id="create-item-button" class = "exo-button" onclick="addRowPlanet();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button>
+              </div>
+            </li>
+          </ul>
+        </div>
+    </main>
