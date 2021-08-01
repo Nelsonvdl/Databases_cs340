@@ -25,12 +25,12 @@
 
       <nav class="navbar">
         <ul class="navlist">
-          <li class="navitem navlink"><a href="index.html">Home</a></li>
-          <li class="navitem navlink active"><a href="exoplanets.html">Exo Planets</a></li>
-          <li class="navitem navlink"><a href="hostSystems.html">Host Systems</a></li>
-          <li class="navitem navlink"><a href="stars.html">Stars</a></li>
-          <li class="navitem navlink"><a href="galaxies.html">Galaxies</a></li>
-          <li class="navitem navlink"><a href="EPSRelation.html">Exo Planet Star Relationship</a></li>
+          <li class="navitem navlink"><a href="/">Home</a></li>
+          <li class="navitem navlink"><a href="exoplanets">Exo Planets</a></li>
+          <li class="navitem navlink"><a href="hostSystems">Host Systems</a></li>
+          <li class="navitem navlink"><a href="stars">Stars</a></li>
+          <li class="navitem navlink active"><a href="galaxies">Galaxies</a></li>
+          <li class="navitem navlink"><a href="EPSRelation">Exo Planet Star Relationship</a></li>
         </ul>
       </nav>
     </header>
@@ -62,13 +62,8 @@
               {{#each data}}
 
               <tr>
-                  <td>{{this.planetID}}
-                  <td>{{this.hostSystemID}}</td>
+                  <td>{{this.galaxyID}}</td>
                   <td>{{this.name}}</td>
-                  <td>{{this.numberOfStars}}</td>
-                  <td>{{this.mass}}</td>
-                  <td>{{this.orbitalPeriod}}</td>
-                  <td>{{this.discovery}}</td>
                   <td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
 
 
@@ -76,52 +71,34 @@
               {{/each}}
           </tbody>
       </table>
-        </div>
-        <div class = "add-value exoplanet-add">
+
+        <div class = "add-value">
           <ul class = "add-value-list">
             <li>
               <p> Add Entry to Table</p>
             </li>
             <li>
               <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Planet Name..." class ="planetName">
+                <input type="text" id="attribute-input" placeholder="Galaxy Name..." class = 'galName'>
               </div>
             </li>
             <li>
               <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="System Foreign Key..." class ="HSFK">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Number of Stars..." class ="numStars">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Mass..." class ="mass">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Orbital Period..." class ="orbitalPeriod">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Discovery..." class ="discovery">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Planet Radius..." class ="radius">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <button type="button" id="create-item-button" class = "exo-button" onclick="addRowPlanet();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button>
+                <button type="button" id="create-item-button" class="galaxy-button" onclick="addRowGal();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button>
               </div>
             </li>
           </ul>
+        </div> -->
+
+        <div class="filter-galaxies">
+          <label for="galaxy-filer">Choose a galaxy</label>
+          <select name="galaxies" id="galaxy">
+            <option value="Galaxy-1">Put</option>
+            <option value="Galaxy-2">Galaxy</option>
+            <option value="Galaxy-3">Names</option>
+            <option value="Galaxy-4">Here</option>
+          </select>
+          <button type="submit" name="galaxy-filer">Submit</button>
+
         </div>
     </main>

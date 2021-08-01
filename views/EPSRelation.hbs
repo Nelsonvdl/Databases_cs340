@@ -25,12 +25,12 @@
 
       <nav class="navbar">
         <ul class="navlist">
-          <li class="navitem navlink"><a href="index.html">Home</a></li>
-          <li class="navitem navlink active"><a href="exoplanets.html">Exo Planets</a></li>
-          <li class="navitem navlink"><a href="hostSystems.html">Host Systems</a></li>
-          <li class="navitem navlink"><a href="stars.html">Stars</a></li>
-          <li class="navitem navlink"><a href="galaxies.html">Galaxies</a></li>
-          <li class="navitem navlink"><a href="EPSRelation.html">Exo Planet Star Relationship</a></li>
+          <li class="navitem navlink"><a href="/">Home</a></li>
+          <li class="navitem navlink"><a href="exoplanets">Exo Planets</a></li>
+          <li class="navitem navlink"><a href="hostSystems">Host Systems</a></li>
+          <li class="navitem navlink"><a href="stars">Stars</a></li>
+          <li class="navitem navlink"><a href="galaxies">Galaxies</a></li>
+          <li class="navitem navlink active"><a href="EPSRelation">Exo Planet Star Relationship</a></li>
         </ul>
       </nav>
     </header>
@@ -58,17 +58,13 @@
           {{!-- Body section --}}
           <tbody>
 
-              {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+              {{!-- For each row --}}
               {{#each data}}
 
               <tr>
-                  <td>{{this.planetID}}
-                  <td>{{this.hostSystemID}}</td>
-                  <td>{{this.name}}</td>
-                  <td>{{this.numberOfStars}}</td>
-                  <td>{{this.mass}}</td>
-                  <td>{{this.orbitalPeriod}}</td>
-                  <td>{{this.discovery}}</td>
+                  <td>{{this.starID}}</td>
+                  {{!-- Not displaying the both names--}}
+                  <td>{{this.planetID}}</td>
                   <td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
 
 
@@ -77,49 +73,24 @@
           </tbody>
       </table>
         </div>
-        <div class = "add-value exoplanet-add">
+        <div class = "add-value">
           <ul class = "add-value-list">
             <li>
               <p> Add Entry to Table</p>
             </li>
             <li>
               <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Planet Name..." class ="planetName">
+                <input type="text" id="attribute-input" placeholder="Star Foreign Key..." class= 'starFK'>
               </div>
             </li>
             <li>
               <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="System Foreign Key..." class ="HSFK">
+                <input type="text" id="attribute-input" placeholder="Planet Foreign Key..." class = 'planetFK'>
               </div>
             </li>
             <li>
               <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Number of Stars..." class ="numStars">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Mass..." class ="mass">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Orbital Period..." class ="orbitalPeriod">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Discovery..." class ="discovery">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Planet Radius..." class ="radius">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <button type="button" id="create-item-button" class = "exo-button" onclick="addRowPlanet();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button>
+                <button type="button" id="create-item-button" class="ERS-button" onclick="addRowEPS();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button>
               </div>
             </li>
           </ul>

@@ -25,35 +25,52 @@
 
       <nav class="navbar">
         <ul class="navlist">
-          <li class="navitem navlink"><a href="index.html">Home</a></li>
-          <li class="navitem navlink"><a href="exoplanets.html">Exo Planets</a></li>
-          <li class="navitem navlink"><a href="hostSystems.html">Host Systems</a></li>
-          <li class="navitem navlink"><a href="stars.html">Stars</a></li>
-          <li class="navitem navlink"><a href="galaxies.html">Galaxies</a></li>
-          <li class="navitem navlink active"><a href="EPSRelation.html">Exo Planet Star Relationship</a></li>
+          <li class="navitem navlink"><a href="/">Home</a></li>
+          <li class="navitem navlink"><a href="exoplanets">Exo Planets</a></li>
+          <li class="navitem navlink"><a href="hostSystems">Host Systems</a></li>
+          <li class="navitem navlink"><a href="stars">Stars</a></li>
+          <li class="navitem navlink"><a href="galaxies">Galaxies</a></li>
+          <li class="navitem navlink active"><a href="EPSRelation">Exo Planet Star Relationship</a></li>
         </ul>
       </nav>
     </header>
 
     <main class="home-body">
-        <div class = "data-table">
-            <table  id="EPSTable">
-                <tr>
-                    <th>starID</th><th>planetID</th><th class = "delete-row">Delete Row</th>
-                </tr>
-                <tr>
-                    <td>testID1</td><td>test_ID1</td><td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
-                </tr>
-                <tr>
-                    <td>testID2</td><td>test_ID2</td><td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
-                </tr>
-                <tr>
-                    <td>testID3</td><td>test_ID3</td><td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
-                </tr>
-                <tr>
-                    <td>testID4</td><td>test_ID4</td><td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
-                </tr>
-            </table>
+      {{!-- The Data from our Database --}}
+
+      {{!-- Create a table --}}
+      <table id="galaxies-table">
+
+          {{!-- Header section --}}
+          <thead>
+
+              {{!-- For just the first row, we print each key of the row object as a header cell so we
+              know what each column means when the page renders --}}
+              <tr>
+                  {{#each data.[0]}}
+                  <th>
+                      {{@key}}
+                  </th>
+                  {{/each}}
+              </tr>
+          </thead>
+
+          {{!-- Body section --}}
+          <tbody>
+
+              {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+              {{#each data}}
+
+              <tr>
+                  <td>{{this.planetID}}</td>
+                  <td>{{this.hostSystemID}}</td>
+                  <td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
+
+
+              </tr>
+              {{/each}}
+          </tbody>
+      </table>
         </div>
         <div class = "add-value">
           <ul class = "add-value-list">
