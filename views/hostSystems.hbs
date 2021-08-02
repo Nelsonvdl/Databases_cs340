@@ -47,11 +47,9 @@
               {{!-- For just the first row, we print each key of the row object as a header cell so we
               know what each column means when the page renders --}}
               <tr>
-                  {{#each data.[0]}}
-                  <th>
-                      {{@key}}
-                  </th>
-                  {{/each}}
+                <th>Host System ID </th>
+                <th>Host System Name</th>
+                <th>Galaxy Name</th>
               </tr>
           </thead>
 
@@ -64,40 +62,40 @@
               <tr>
                   <td>{{this.hostSystemID}}
                   <td>{{this.name}}</td>
-                  <td>{{this.g.name}}
+                  <td>{{this.galaxyName}}
 
                   {{!-- NEED TO REPLACE WITH ACTUAL GALAXY NAME --}}
-                  <td>{{this.galaxyID}}<td>
+                  <!-- <td>{{this.galaxyID}}<td> -->
                   <td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
-
-
               </tr>
               {{/each}}
           </tbody>
       </table>
 
-              <p> Add Entry to Table</p>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Host System Name..." class= "HSname">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Star Foreign Key..." class= 'starFK'>
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Galaxy Foreign Key..." class= 'galFK'>
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <button type="button" id="create-item-button" class= "system-button" onclick="addRowHS();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button>
-              </div>
-            </li>
-          </ul>
-        </div>
+      <pre>
+          {{glaxyMap}}
+      </pre>
+
+
+
+      {{!-- Form to add a record to the table using standard HTML forms --}}
+
+      <form id="add-hostSystem-form" method="POST" action="/add-hostSystem-form">
+
+          <div class="input-element">
+            <label for="input-hostSystem">Name:</label>
+            <input type="text" name="input-hostSystem" id="input-hostSystem">
+          </div>
+
+
+
+          <div class="input-element">
+            <label for="input-galaxy">Galaxy:</label>
+            <input type="text" name="input-galaxy" id="input-galaxy">
+          </div>
+
+
+          <input type="submit">
+      </form>
+
     </main>

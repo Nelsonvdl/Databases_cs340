@@ -39,7 +39,7 @@
       {{!-- The Data from our Database --}}
 
       {{!-- Create a table --}}
-      <table id="galaxies-table">
+      <table id="exoplanets-table">
 
           {{!-- Header section --}}
           <thead>
@@ -77,51 +77,57 @@
           </tbody>
       </table>
         </div>
-        <div class = "add-value exoplanet-add">
-          <ul class = "add-value-list">
-            <li>
-              <p> Add Entry to Table</p>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Planet Name..." class ="planetName">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="System Foreign Key..." class ="HSFK">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Number of Stars..." class ="numStars">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Mass..." class ="mass">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Orbital Period..." class ="orbitalPeriod">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Discovery..." class ="discovery">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Planet Radius..." class ="radius">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <button type="button" id="create-item-button" class = "exo-button" onclick="addRowPlanet();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button>
-              </div>
-            </li>
-          </ul>
-        </div>
+
+        <form id="add-exoplanet-form" method="POST" action="/add-exoplanet-form">
+          <div class = "add-value exoplanet-add">
+            <ul class = "add-value-list">
+              <li>
+                <p> Add Entry to Table</p>
+              </li>
+              <li>
+                <div class="input-element">
+                  <label for="input-exoplanetName"></label>
+                  <input type="text" name ="input-exoplanetName" id="input-exoplanetName" placeholder="Planet Name..." class ="planetName">
+                </div>
+              </li>
+              <li>
+                <div class="input-element">
+                  <label for="input-hostSystemID"></label>
+                  <input type="text" name ="input-hostSystemID" id="input-hostSystemID" placeholder="System Foreign Key..." class ="HSFK">
+                </div>
+              </li>
+              <li>
+                <div class="input-element">
+                  <label for="input-numberOfStars"></label>
+                  <input type="text" name ="input-numberOfStars" id="input-numberOfStars" placeholder="Number of Stars..." class ="numStars">
+                </div>
+              </li>
+              <li>
+                <div class="input-element">
+                  <label for="input-mass"></label>
+                  <input type="text" name ="input-mass" id="input-mass" placeholder="Mass..." class ="mass">
+                </div>
+              </li>
+              <li>
+                <div class="input-element">
+                  <label for="input-orbitalPeriod"></label>
+                  <input type="text" name ="input-orbitalPeriod" id="input-orbitalPeriod" placeholder="Orbital Period..." class ="orbitalPeriod">
+                </div>
+              </li>
+              <li>
+                <div class="input-element">
+                  <label for="input-discovery"></label>
+                  <input type="text" name="input-discovery" id="input-discovery" placeholder="Discovery..." class ="discovery">
+                </div>
+              </li>
+              <li>
+                <div class="input-element">
+                  <input type="submit">
+                  <!-- <button type="button" id="create-item-button" class = "exo-button" onclick="addRowPlanet();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button> -->
+                </div>
+              </li>
+            </ul>
+          </div>
+        </form>
+
     </main>

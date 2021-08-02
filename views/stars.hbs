@@ -39,7 +39,7 @@
       {{!-- The Data from our Database --}}
 
       {{!-- Create a table --}}
-      <table id="galaxies-table">
+      <table id="stars-table">
 
           {{!-- Header section --}}
           <thead>
@@ -76,7 +76,11 @@
               </tr>
               {{/each}}
           </tbody>
+
+
       </table>
+
+      <form class="add-star-form" action="/add-star-form" method="POST">
         <div class = "add-value">
           <ul class = "add-value-list">
             <li>
@@ -84,30 +88,36 @@
             </li>
             <li>
               <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Star Name..." class = "starName">
+                <label for="input-starName"></label>
+                <input type="text" name ="input-starName" id="input-starName" placeholder="Star Name..." class = "starName">
               </div>
             </li>
             <li>
               <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Star type..." class = "starType">
+                <label for="input-starType"></label>
+                <input type="text" name ="input-starType" id="input-starType" placeholder="Star type..." class = "starType">
               </div>
             </li>
             <li>
               <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Star temperature..." class = "starTemp">
+                <label for="input-starTemp"></label>
+                <input type="text" name ="input-starTemp" id="input-starTemp" placeholder="Star temperature..." class = "starTemp">
               </div>
             </li>
             <li>
               <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="System Foreign Key..." class = "starHSFK">
+                <label for="input-hostSystemID"></label>
+                <input type="text" name ="input-hostSystemID" id="input-hostSystemID" placeholder="Host System ID..." class = "starHSFK">
               </div>
             </li>
             <li>
               <div class="input-element">
-                <button type="button" id="create-item-button" class = "star-button" onclick="addRowStar();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button>
+                <input type="submit">
               </div>
             </li>
           </ul>
         </div>
+      </form>
+
 
     </main>

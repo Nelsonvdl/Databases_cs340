@@ -72,6 +72,7 @@
           </tbody>
       </table>
 
+      <form id="add-galaxy-form" action="/add-galaxy-form" method="POST">
         <div class = "add-value">
           <ul class = "add-value-list">
             <li>
@@ -79,12 +80,14 @@
             </li>
             <li>
               <div class="input-element">
-                <input type="text" id="attribute-input" placeholder="Galaxy Name..." class = 'galName'>
+                <label for="input-galaxyName"></label>
+                <input type="text" name='input-galaxyName' id="input-galaxyName" placeholder="Galaxy Name..." class = 'galName'>
               </div>
             </li>
             <li>
               <div class="input-element">
-                <button type="button" id="create-item-button" class="galaxy-button" onclick="addRowGal();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button>
+                <input type="submit">
+                <!-- <button type="button" id="create-item-button" class="galaxy-button" onclick="addRowGal();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button> -->
               </div>
             </li>
           </ul>
@@ -101,4 +104,6 @@
           <button type="submit" name="galaxy-filer">Submit</button>
 
         </div>
+      </form>
+
     </main>
