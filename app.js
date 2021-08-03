@@ -4,7 +4,7 @@
 
 // Express
 var express = require('express');
-var db = require('../../Databases_cs340/dbcon.js');
+var db = require('./dbcon.js');
 
 var app = express();
 app.use(express.json())
