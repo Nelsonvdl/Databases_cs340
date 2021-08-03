@@ -4,11 +4,12 @@
 
 // Express
 var express = require('express');
-var db = require('./dbcon.js');
+var db = require('../../Databases_cs340/dbcon.js');
 
 var app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.set('port', process.argv[2]);
 
 // Static Files
 app.use(express.static('public'));
@@ -289,6 +290,6 @@ app.get('/EPSRelation', function(req, res)
 /*
     LISTENER
 */
-app.listen(PORT, function(){
-    console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
+app.listen(app.get('port'), function(){
+  console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
