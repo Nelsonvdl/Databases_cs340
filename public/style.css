@@ -128,24 +128,35 @@ a:focus {
 
 }
 
+table {
+  padding-left: 30px;
+  padding-top: 20px;
+}
+
 td {
   text-align: center;
   padding: 10px;
 }
 
 tr:nth-child(even) {
-  background-color: rgb(17, 19, 44);
+  background-color: rgba(17, 19, 44, 0.45);
   color: white;
 }
 
 tr:nth-child(odd) {
-  background-color: rgb(87, 87, 90);
+  background-color: rgba(46, 62, 104, 0.45);
+  color: white;
 }
 
-tr:nth-child(1) {
+th {
   text-align: center;
-  padding: 30px;
-  background-color:rgba(255, 255, 255, 0)
+  padding: 10px;
+  background-color: rgba(1, 9, 20, 0.836);
+}
+
+thead {
+  color: #eee;
+
 }
 
 #delete-item-button {
