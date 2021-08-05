@@ -76,58 +76,66 @@ app.post('/add-Galaxy-Form', function(req, res) {
 
 
 app.get('/hostSystems', function(req, res){
-    // Declare Query 1
-    // NOT DISPLAYING BOTH THE hostSystem NAME AND galaxy NAME
-  //   let query1 = await queryAsync('SELECT h.hostSystemID, g.name, h.name FROM hostSystems as h INNER JOIN galaxies as g ON g.galaxyID = h.galaxyID;').then(result => {
-  //     return res.json(result);
-  //   });
-  // });
-
-    let query1 = 'SELECT * FROM hostSystems;';
-    let query2 = 'SELECT * FROM galaxies;';
+// Declare Query 1
+// NOT DISPLAYING BOTH THE hostSystem NAME AND galaxy NAME
+let query1 = 'SELECT h.hostSystemID, g.galaxyName, h.name FROM hostSystems as h INNER JOIN galaxies as g ON g.galaxyID = h.galaxyID;';
+db.pool.query(query1, function(error, rows, fields){
+console.log(rows)
+res.render('hostSystems', {data: rows});
+})
 
 
-    // Run the 1st query
-    db.pool.query(query1, function(error, rows, fields){
-      console.log(rows);
-      let hostSystems = rows;
 
-      db.pool.query(query2, function(error, rows, fields){
-        let galaxies = rows;
-
-
-        // Construct an object for reference in the table
-        // Array.map is awesome for doing something with each
-        // element of an array.
-        let galaxyMap = {}
-        galaxies.map(galaxy => {
-          let id = parseInt(galaxy.id, 10)
-
-          galaxyMap[id] = galaxy["name"]
-        })
-
-        // Overwrite the galaxy ID with the name of the galaxy in the people object
-        hostSystems = hostSystems.map(hostSystem => {
-          return Object.assign(hostSystem, {galaxyName: galaxyMap[hostSystem.galaxyName]})
-        })
-
-
-        console.log('query1 = ' + query1);
-        console.log('hostSystem = ' + hostSystems)
-        console.log(hostSystems[0])
-        return res.render('hostSystems', {data: hostSystems, galaxies: galaxies})
-
-
-      })
-
-        // Save the hostSystems
-
-        // hostSystems_string = JSON.stringify(hostSystems)
-
-        // res.render('hostSystems', {data: hostSystems});
-      });
 });
 
+
+//     let query1 = 'SELECT * FROM hostSystems;';
+//     let query2 = 'SELECT * FROM galaxies;';
+//
+//
+//     // Run the 1st query
+//     db.pool.query(query1, function(error, rows, fields){
+//       console.log(rows);
+//       let hostSystems = rows;
+//       console.log(hostSystems)
+//
+//       db.pool.query(query2, function(error, rows, fields){
+//         let galaxies = rows;
+//
+//
+//         // Construct an object for reference in the table
+//         // Array.map is awesome for doing something with each
+//         // element of an array.
+//         let galaxyMap = {}
+//         galaxies.map(galaxy => {
+//           let id = parseInt(galaxy.id, 10)
+//
+//           galaxyMap[id] = galaxy["name"]
+//           console.log(galaxyMap)
+//         })
+//
+//         // Overwrite the galaxy ID with the name of the galaxy in the people object
+//         hostSystems = hostSystems.map(hostSystem => {
+//           return Object.assign(hostSystem, {galaxyName: galaxyMap[hostSystem.galaxyName]})
+//         })
+//
+//
+//         console.log('query1 = ' + query1);
+//         console.log('hostSystem = ' + hostSystems)
+//         console.log(hostSystems[0])
+//         return res.render('hostSystems', {data: hostSystems, galaxies: galaxies})
+//
+//
+//       })
+//
+//         // Save the hostSystems
+//
+//         // hostSystems_string = JSON.stringify(hostSystems)
+//
+//         // res.render('hostSystems', {data: hostSystems});
+//       });
+// });
+//
 app.post('/add-hostSystem-form', function(req, res) {
   // get incoming data
   let data = req.body;
