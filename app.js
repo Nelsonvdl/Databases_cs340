@@ -63,7 +63,7 @@ app.post('/add-Galaxy-Form', function(req, res) {
   let galaxyName = data['input-galaxyName']
 
   // query to add
-  query1 = `INSERT INTO galaxies (name) VALUES ('${galaxyName}')`;
+  query1 = `INSERT INTO galaxies (galaxyName) VALUES ('${galaxyName}')`;
   db.pool.query(query1, function(error, rows, fields){
     if(error) {
       console.log(error)
@@ -93,7 +93,7 @@ app.post('/add-hostSystem-form', function(req, res) {
   let galaxy = data['input-galaxy']
   // let data = parseInt(data[hostSystemID])
   // query to add
-    query1 = `INSERT INTO hostSystems (name, galaxyID) VALUES ('${name}', '${galaxy}')`;
+    query1 = `INSERT INTO hostSystems (hostSystemName, galaxyID) VALUES ('${name}', '${galaxy}')`;
   db.pool.query(query1, function(error, rows, fields){
     if(error) {
       console.log(error)
@@ -145,7 +145,7 @@ app.post('/add-star-Form', function(req, res) {
   let hostSystemID = parseInt(data["input-hostSystemID"]);
 
   // query to add stars
-  query1 = `INSERT INTO stars (name, type, temperature, hostSystemID) VALUES ('${name}', '${starType}', '${starTemp}', '${hostSystemID}')`;
+  query1 = `INSERT INTO stars (starName, type, temperature, hostSystemID) VALUES ('${name}', '${starType}', '${starTemp}', '${hostSystemID}')`;
   db.pool.query(query1, function(error, rows, fields){
     if(error) {
       console.log(error)
@@ -205,7 +205,7 @@ app.post('/add-exoplanet-form', function(req, res){
     }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO exoplanets (hostSystemID, name, numberOfStars, mass, orbitalPeriod, discovery) VALUES ('${hostSystemID}', '${name}', ${numberOfStars}, ${mass}, ${orbitalPeriod}, ${discovery})`;
+    query1 = `INSERT INTO exoplanets (hostSystemID, exoplanetName, numberOfStars, mass, orbitalPeriod, discovery) VALUES ('${hostSystemID}', '${name}', ${numberOfStars}, ${mass}, ${orbitalPeriod}, ${discovery})`;
     db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
@@ -227,9 +227,8 @@ app.post('/add-exoplanet-form', function(req, res){
 
 app.get('/EPSRelation', function(req, res)
 {
-    // Declare Query 1
-    // let query1 = 'SELECT e.name, h.name FROM exoplanets as e INNER JOIN hostSystems as h ON e.planetID = h.hostSystemID';
-    let query1 = 'SELECT s.starName, e.exoplanetName FROM `exoplanets` AS e INNER JOIN `stars` as s;';
+
+    let query1 = `SELECT s.starName, ep.exoplanetName FROM exoplanetStarRelationShip epr INNER JOIN exoplanets ep ON ep.planetID = epr.planetID INNER JOIN stars s ON s.starID = epr.starID;`;
 
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields){
