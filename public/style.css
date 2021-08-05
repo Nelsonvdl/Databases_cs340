@@ -28,15 +28,16 @@ a {
 
 .navitem {
   display: inline-block;
+  transition: .3s ease;
 }
 
 a {
-  color: #e7e7e7;
+  color: #c0c0c0;
 }
 
 a:hover,
 a:focus {
-  color: #aaaaaa;
+  color: #ffffff;
 }
 
 a:focus {
@@ -60,6 +61,29 @@ a:focus {
 
 .navlink.active {
   box-shadow: inset 0 -3px #ffffff;
+  border-radius: none;
+}
+
+.navitem:hover {
+  -webkit-box-shadow: 0px 0px 22px 6px rgba(255,255,255,0.7); 
+  box-shadow: 0px 0px 22px 6px rgba(255,255,255,0.7);
+  border-radius: 5px;
+  color:white;
+}
+
+.pic-nav-item {
+  display: inline-block;
+  width: 276px;
+  height: 200px; 
+  border-radius: 50%;
+  margin: 50px;
+  opacity: 80%;
+  transition: .8s ease;
+}
+
+.pic-nav-item:hover {
+  -webkit-box-shadow: 0px 0px 22px 6px rgba(255,255,255,0.7); 
+  box-shadow: 0px 0px 22px 6px rgba(255,255,255,0.7);
 }
 
 .data-table {
@@ -73,8 +97,8 @@ a:focus {
 }
 
 .add-value{
-  margin-top: 35px;
-  margin-left: 80px;
+  margin-top: 63px;
+  margin-left: 50px;
   height: 200px;
   display:inline-block;
   color: white;
@@ -85,7 +109,7 @@ a:focus {
 
 .exoplanet-add {
   flex: wrap;
-  margin-left:500px;
+  margin-left:50px;
   height: 300px;
   display: block;
 }
