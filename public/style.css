@@ -31,13 +31,17 @@ a {
   transition: .3s ease;
 }
 
+
 a {
   color: #c0c0c0;
 }
 
-a:hover,
-a:focus {
-  color: #ffffff;
+.navitem:hover a {
+  -webkit-box-shadow: 0px 0px 22px 6px rgba(255,255,255,0.7); 
+  box-shadow: 0px 0px 22px 6px rgba(255,255,255,0.7);
+  border-radius: 5px;
+  color:rgba(1, 9, 20, 0.836);
+  background-color: rgb(255, 255, 255);
 }
 
 a:focus {
@@ -46,6 +50,10 @@ a:focus {
 
 .NASA-link {
   color:rgb(248, 225, 174)
+}
+
+.NASA-link:hover {
+  color:rgb(255, 255, 255)
 }
 
 .navlink a {
@@ -64,12 +72,6 @@ a:focus {
   border-radius: none;
 }
 
-.navitem:hover {
-  -webkit-box-shadow: 0px 0px 22px 6px rgba(255,255,255,0.7); 
-  box-shadow: 0px 0px 22px 6px rgba(255,255,255,0.7);
-  border-radius: 5px;
-  color:white;
-}
 
 .pic-nav-item {
   display: inline-block;
