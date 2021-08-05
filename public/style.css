@@ -28,7 +28,10 @@ a {
 
 .navitem {
   display: inline-block;
-  transition: .3s ease;
+}
+
+.navitem a {
+  transition: .5s ease;
 }
 
 
