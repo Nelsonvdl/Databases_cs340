@@ -78,64 +78,13 @@ app.post('/add-Galaxy-Form', function(req, res) {
 app.get('/hostSystems', function(req, res){
 // Declare Query 1
 // NOT DISPLAYING BOTH THE hostSystem NAME AND galaxy NAME
-let query1 = 'SELECT h.hostSystemID, g.galaxyName, h.name FROM hostSystems as h INNER JOIN galaxies as g ON g.galaxyID = h.galaxyID;';
+let query1 = 'SELECT h.hostSystemID, g.galaxyName, h.hostSystemName FROM hostSystems as h INNER JOIN galaxies as g ON g.galaxyID = h.galaxyID;';
 db.pool.query(query1, function(error, rows, fields){
 console.log(rows)
 res.render('hostSystems', {data: rows});
 })
-
-
-
 });
 
-
-//     let query1 = 'SELECT * FROM hostSystems;';
-//     let query2 = 'SELECT * FROM galaxies;';
-//
-//
-//     // Run the 1st query
-//     db.pool.query(query1, function(error, rows, fields){
-//       console.log(rows);
-//       let hostSystems = rows;
-//       console.log(hostSystems)
-//
-//       db.pool.query(query2, function(error, rows, fields){
-//         let galaxies = rows;
-//
-//
-//         // Construct an object for reference in the table
-//         // Array.map is awesome for doing something with each
-//         // element of an array.
-//         let galaxyMap = {}
-//         galaxies.map(galaxy => {
-//           let id = parseInt(galaxy.id, 10)
-//
-//           galaxyMap[id] = galaxy["name"]
-//           console.log(galaxyMap)
-//         })
-//
-//         // Overwrite the galaxy ID with the name of the galaxy in the people object
-//         hostSystems = hostSystems.map(hostSystem => {
-//           return Object.assign(hostSystem, {galaxyName: galaxyMap[hostSystem.galaxyName]})
-//         })
-//
-//
-//         console.log('query1 = ' + query1);
-//         console.log('hostSystem = ' + hostSystems)
-//         console.log(hostSystems[0])
-//         return res.render('hostSystems', {data: hostSystems, galaxies: galaxies})
-//
-//
-//       })
-//
-//         // Save the hostSystems
-//
-//         // hostSystems_string = JSON.stringify(hostSystems)
-//
-//         // res.render('hostSystems', {data: hostSystems});
-//       });
-// });
-//
 app.post('/add-hostSystem-form', function(req, res) {
   // get incoming data
   let data = req.body;
@@ -160,7 +109,7 @@ app.get('/stars', function(req, res)
 {
     // Declare Query 1
     // NOT DISPLAYING BOTH THE hostSystem NAME AND galaxy NAME
-    let query1 = 'SELECT s.starID, s.name, s.type, s.temperature, s.hostSystemID, h.hostSystemID FROM stars as s INNER JOIN hostSystems as h ON h.hostSystemID = s.hostSystemID';
+    let query1 = 'SELECT s.starID, s.starName, s.type, s.temperature, h.hostSystemName FROM stars as s INNER JOIN hostSystems as h ON h.hostSystemID = s.hostSystemID';
 
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields){
@@ -210,7 +159,7 @@ app.post('/add-star-Form', function(req, res) {
 app.get('/exoplanets', function(req, res)
 {
     // Declare Query 1
-    let query1 = 'SELECT e.planetID, e.hostSystemID, e.name, e.numberOfStars, e.mass, e.orbitalPeriod, e.discovery FROM exoplanets as e INNER JOIN hostSystems as h ON e.hostSystemID = h.hostSystemID;';
+    let query1 = 'SELECT e.planetID, h.hostSystemName, e.exoplanetName, e.numberOfStars, e.mass, e.orbitalPeriod, e.discovery FROM exoplanets as e INNER JOIN hostSystems as h ON e.hostSystemID = h.hostSystemID;';
 
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields){
@@ -280,7 +229,7 @@ app.get('/EPSRelation', function(req, res)
 {
     // Declare Query 1
     // let query1 = 'SELECT e.name, h.name FROM exoplanets as e INNER JOIN hostSystems as h ON e.planetID = h.hostSystemID';
-    let query1 = 'SELECT * FROM exoplanetStarRelationShip;';
+    let query1 = 'SELECT s.starName, e.exoplanetName FROM `exoplanets` AS e INNER JOIN `stars` as s;';
 
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields){

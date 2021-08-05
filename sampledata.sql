@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS galaxies;
 CREATE TABLE galaxies (
   galaxyID INT(11) AUTO_INCREMENT PRIMARY KEY,
-  name varchar(255)
+  galaxyName varchar(255)
 );
 
 INSERT INTO galaxies VALUES (1, 'NGC'), (2, 'E0102'), (3, 'Unknown'), (4, 'Milky Way');
@@ -9,7 +9,7 @@ INSERT INTO galaxies VALUES (1, 'NGC'), (2, 'E0102'), (3, 'Unknown'), (4, 'Milky
 DROP TABLE IF EXISTS hostSystems;
 CREATE TABLE hostSystems (
  hostSystemID INT(11) AUTO_INCREMENT PRIMARY KEY,
- name varchar(255),
+ hostSystemName varchar(255),
  galaxyID INT(11) NOT NULL,
  FOREIGN KEY (galaxyID) REFERENCES galaxies(galaxyID)
 );
@@ -19,7 +19,7 @@ INSERT INTO hostSystems VALUES (1, 'AU Mic', 1),  (2, 'DS Tuc', 2), (3, 'GJ 1252
 DROP TABLE IF EXISTS stars;
 CREATE TABLE stars (
   starID int(11) AUTO_INCREMENT PRIMARY KEY,
-  name varchar(255),
+  starName varchar(255),
   type varchar(255),
   temperature int(11),
   hostSystemID int(11),
@@ -33,7 +33,7 @@ CREATE TABLE exoplanets (
   planetID INT(11) AUTO_INCREMENT PRIMARY KEY,
   hostSystemID INT(11) NOT NULL,
   FOREIGN KEY (hostSystemID) REFERENCES hostSystems(hostSystemID),
-  name varchar(255),
+  exoplanetName varchar(255),
   numberOfStars INT(11) NOT NULL,
   mass INT(11),
   orbitalPeriod INT(11),

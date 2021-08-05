@@ -56,27 +56,19 @@
           {{!-- Body section --}}
           <tbody>
 
-              {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+              {{!-- For each row, print the hostSystemID, name, galaxyName in order --}}
               {{#each data}}
 
               <tr>
                   <td>{{this.hostSystemID}}
-                  <td>{{this.name}}</td>
+                  <td>{{this.hostSystemName}}</td>
                   <td>{{this.galaxyName}}
 
-                  {{!-- NEED TO REPLACE WITH ACTUAL GALAXY NAME --}}
-                  <!-- <td>{{this.galaxyID}}<td> -->
                   <td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
               </tr>
               {{/each}}
           </tbody>
       </table>
-
-      <pre>
-          {{glaxyMap}}
-      </pre>
-
-
 
       {{!-- Form to add a record to the table using standard HTML forms --}}
 
@@ -86,8 +78,6 @@
             <label for="input-hostSystem">Name:</label>
             <input type="text" name="input-hostSystem" id="input-hostSystem">
           </div>
-
-
 
           <div class="input-element">
             <label for="input-galaxy">Galaxy:</label>
@@ -100,7 +90,7 @@
 
     </form>
 
-    {{!-- Form to search by last name --}}
+    {{!-- Form to search by galaxy name --}}
     <form id="search-galaxy-html" method='GET' action='/hostSystems'>
         <label for="input-galaxyName">Search by Galaxy Name: </label>
         <input type="text" name="galaxyName" id="input-galaxyName-html-search">
