@@ -7,6 +7,8 @@ In the end the add and delete rows will call SQL queries to the database
 var iconsPlus = document.createElement('i');
 iconsPlus.setAttribute("class", "fas fa-plus");
 
+//colors for edit and delete
+
 
 //var iconsMinus = document.createElement('i');
 //iconsMinus.setAttribute("class", "fas fa-minus");
@@ -16,8 +18,34 @@ iconsPlus.setAttribute("class", "fas fa-plus");
 //iconsChart.setAttribute("class", "fa fa-table");
 
 function deleteRow(btn){
-    btn.closest('tr').remove();
-    //put query in future
+    console.log("Preform Delete sql query...")
+    row = btn.closest('tr')
+
+    //base color saved
+    var baseBack = row.style.backgroundColor 
+
+    //blink on delete
+    row.classList.add("flashDelete")
+    setTimeout(function(){row.classList.remove("flashDelete")},2000)
+    row.style.backgroundColor = baseBack
+    
+
+    //put query for delete in future NOTE row contains current row
+}
+
+function editRow(btn){
+    console.log("Preform update sql query...")
+    row = btn.closest('tr')
+
+    //base color saved
+    var baseBack = row.style.backgroundColor 
+
+    //blink on delete
+    row.classList.add("flashEdit")
+    setTimeout(function(){row.classList.remove("flashEdit")},2000)
+    row.style.backgroundColor = baseBack
+
+    //put update query NOTE row contains current row
 }
 
 function addRowStar () {

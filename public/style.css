@@ -34,6 +34,16 @@ a {
   transition: .5s ease;
 }
 
+input {
+  background-color: rgb(205, 209, 223);
+  border: none;
+  border-radius: 2px;
+  height: 20px;
+}
+
+input:hover {
+  background-color: white;
+}
 
 a {
   color: #c0c0c0;
@@ -101,14 +111,71 @@ a:focus {
 }
 
 .add-value{
-  margin-top: 63px;
+  margin-top: 60px;
   margin-left: 50px;
-  height: 200px;
+  height: 220px;
+  width: 280px;
   display:inline-block;
   color: white;
-  background-color:rgb(17, 19, 44);
+  background-color:rgba(46, 62, 104, 0.45);
   padding: 10px;
+}
 
+.search-function-box {
+  margin-top: 20px;
+  background-color:rgba(46, 62, 104, 0.45);
+  margin-left: 55px;
+  padding: 10px;
+  height: 120px;
+  width: 280px;
+  color: white;
+
+}
+.input-search-label {
+  padding: 5px;
+  background-color: rgba(17, 19, 44, 0.45);
+  color: white;
+}
+
+.word-search-label {
+  padding: 10px;
+}
+
+.for-inline-input {
+  display: inline-block;
+}
+
+.submit-button {
+  width: 80px;
+  height: 30px;
+  margin:5px;
+  background-color:rgb(83, 123, 224);
+  border: none;
+  color:white;
+  border-radius: 2px;
+}
+
+.submit-button:hover {
+  background-color:rgb(49, 82, 167);
+  border:white 1px solid;
+  color:rgb(219, 219, 219);
+}
+
+form {
+  padding: 5px;
+}
+
+.reset-button {
+  padding: 5px;
+  background-color: rgb(230, 78, 78);
+  border-radius: 2px;
+  border: none;
+  color:white;
+}
+
+.reset-button:hover {
+  background-color: rgb(230, 78, 78);
+  border: white 1px solid;
 }
 
 .exoplanet-add {
@@ -123,6 +190,10 @@ a:focus {
   margin: auto;
   text-align: center;
   padding: 0px 10px;
+}
+
+.move-over-li{
+padding-right: 22px;
 }
 
 .input-element {
@@ -189,14 +260,60 @@ thead {
 
 #delete-item-button {
   background-color: rgb(230, 78, 78);
+  height: 25px;
   border: none;
   color: white;
+  border-radius: 2px;
 }
 
 #delete-item-button:hover {
   cursor: pointer;
   color:rgb(214, 214, 214);
   background-color: rgb(230, 78, 78);
+}
+
+#edit-item-button {
+  background-color: rgb(233, 166, 66);
+  height: 25px;
+  border: none;
+  color: white;
+  border-radius: 2px;
+}
+
+#edit-item-button:hover {
+  background-color: rgb(168, 121, 50);
+  cursor: pointer;
+  color:rgb(214, 214, 214);
+}
+
+@keyframes deletePulse {
+  0% {
+    background: rgb(230, 78, 78);
+  }
+  100% {
+    background:rgba(17, 19, 44, 0);
+  }
+}
+
+@keyframes editPulse {
+  0% {
+    background: rgb(233, 166, 66);
+  }
+  100% {
+    background:rgba(17, 19, 44, 0);
+  }
+}
+
+.flashDelete {
+  animation-name: deletePulse;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+}
+
+.flashEdit {
+  animation-name: editPulse;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
 }
 
 #create-item-button {

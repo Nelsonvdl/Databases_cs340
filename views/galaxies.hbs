@@ -47,11 +47,10 @@
               {{!-- For just the first row, we print each key of the row object as a header cell so we
               know what each column means when the page renders --}}
               <tr>
-                  {{#each data.[0]}}
-                  <th>
-                      {{@key}}
-                  </th>
-                  {{/each}}
+                <th>Galaxy ID </th>
+                <th>Galaxy Name</th>
+                <th>Update</th>
+                <th>Delete</th>
               </tr>
           </thead>
 
@@ -61,13 +60,12 @@
               {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
               {{#each data}}
 
-              <tr>
+                <tr>
                   <td>{{this.galaxyID}}</td>
                   <td>{{this.galaxyName}}</td>
+                  <td><button type="button" id="edit-item-button" onclick="editRow(this);">Edit</button></td>
                   <td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
-
-
-              </tr>
+                </tr>
               {{/each}}
           </tbody>
       </table>
@@ -78,15 +76,15 @@
             <li>
               <p> Add Entry to Table</p>
             </li>
-            <li>
+            <li class="move-over-li">
               <div class="input-element">
-                <label for="input-galaxyName"></label>
+                <label for="input-galaxyName"class="word-search-label"></label>
                 <input type="text" name='input-galaxyName' id="input-galaxyName" placeholder="Galaxy Name..." class = 'galName'>
               </div>
             </li>
             <li>
               <div class="input-element">
-                <input type="submit">
+                <input type="submit" class="submit-button">
                 <!-- <button type="button" id="create-item-button" class="galaxy-button" onclick="addRowGal();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button> -->
               </div>
             </li>

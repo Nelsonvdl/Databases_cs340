@@ -50,6 +50,8 @@
                 <th>Host System ID </th>
                 <th>Host System Name</th>
                 <th>Galaxy Name</th>
+                <th>Update</th>
+                <th>Delete</th>
               </tr>
           </thead>
 
@@ -63,7 +65,7 @@
                   <td>{{this.hostSystemID}}
                   <td>{{this.hostSystemName}}</td>
                   <td>{{this.galaxyName}}
-
+                  <td><button type="button" id="edit-item-button" onclick="editRow(this);">Edit</button></td>
                   <td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
               </tr>
               {{/each}}
@@ -71,42 +73,57 @@
       </table>
 
       {{!-- Form to add a record to the table using standard HTML forms --}}
+      <div class="container-for-forms">
+        <form id="add-hostSystem-form" method="POST" action="/add-hostSystem-form">
+            <div class = "add-value">
+                <ul class = "add-value-list">
+                    <li>
+                      <p> Add Entry to Table</p>
+                    </li>
+                    <li class="move-over-li">
+                      <div class="input-element">
+                        <label for="input-hostSystem" class="word-search-label"></label>
+                        <input type="text" name="input-hostSystem" id="input-hostSystem" placeholder="Host System Name...">
+                      </div>
+                    </li>
+                    <li class="for-inline-input">
+                      <div class="input-element">
+                        <label for="input-galaxy">Galaxy:</label>
+                        <select type="select" name="input-galaxy" id="input-galaxy" class="input-search-label">
+                          {{#each galaxies}}
+                          <option value = "{{this.galaxyID}}">{{this.galaxyName}}</option>
+                          {{/each}}
+                        </select>
+                      </div>
+                    </li>
 
-      <form id="add-hostSystem-form" method="POST" action="/add-hostSystem-form">
+                    <li class="for-inline-input">
+                      <div class="input-element">
+                        <input type="submit" class="submit-button">
+                      </div>
+                    </li>
+                  </ul>
+              </div>
+          </form>
 
-          <div class="input-element">
-            <label for="input-hostSystem">Name:</label>
-            <input type="text" name="input-hostSystem" id="input-hostSystem">
-          </div>
+        </form>
 
-          <div class="input-element">
-            <label for="input-galaxy">Galaxy:</label>
-            <select type="select" name="input-galaxy" id="input-galaxy">
-              {{#each galaxies}}
-              <option value = "{{this.galaxyID}}">{{this.galaxyName}}</option>
-              {{/each}}
-            </select>
-          </div>
+        {{!-- Form to search by galaxy name --}}
+        <div class="search-function-box">
+          <form id="search-galaxy-html" method='POST' action='/hostSystems-search'>
+              <label for="input-galaxyName" class="word-search-label">Search by Galaxy Name: </label><br>
+              <select type="select" name="input-galaxy" id="input-galaxy" class="input-search-label">
+                {{#each galaxies}}
+                <option value = "{{this.galaxyName}}">{{this.galaxyName}}</option>
+                {{/each}}
+              </select>
 
+              <input type="submit" class="submit-button">
+          </form>
 
-          <input type="submit">
-      </form>
-
-    </form>
-
-    {{!-- Form to search by galaxy name --}}
-    <form id="search-galaxy-html" method='POST' action='/hostSystems-search'>
-        <label for="input-galaxyName">Search by Galaxy Name: </label>
-        <select type="select" name="input-galaxy" id="input-galaxy">
-          {{#each galaxies}}
-          <option value = "{{this.galaxyName}}">{{this.galaxyName}}</option>
-          {{/each}}
-        </select>
-
-        <input type="submit">
-    </form>
-
-    <form id='reset-page' method='GET' action='/hostSystems'>
-      <button type="submit" name="button">Reset</button>
+          <form id='reset-page' method='GET' action='/hostSystems'>
+            <button type="submit" name="button" class="reset-button">Reset</button>
+        </div>
+      </div>
 
     </main>

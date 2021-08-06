@@ -47,11 +47,15 @@
               {{!-- For just the first row, we print each key of the row object as a header cell so we
               know what each column means when the page renders --}}
               <tr>
-                  {{#each data.[0]}}
-                  <th>
-                      {{@key}}
-                  </th>
-                  {{/each}}
+                <th>Planet ID </th>
+                <th>Host System Name</th>
+                <th>Planet Name</th>
+                <th>Number of Stars</th>
+                <th>Mass</th>
+                <th>Orbital Period</th>
+                <th>Discovery Date</th>
+                <th>Update</th>
+                <th>Delete</th>
               </tr>
           </thead>
 
@@ -69,86 +73,88 @@
                   <td>{{this.mass}}</td>
                   <td>{{this.orbitalPeriod}}</td>
                   <td>{{this.discovery}}</td>
+                  <td><button type="button" id="edit-item-button" onclick="editRow(this);">Edit</button></td>
                   <td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
 
-
-              </tr>
+                </tr>
               {{/each}}
           </tbody>
       </table>
         </div>
+        <div class="container-for-forms">
+          <form id="add-exoplanet-form" method="POST" action="/add-exoplanet-form">
+            <div class = "add-value exoplanet-add">
+              <ul class = "add-value-list">
+                <li>
+                  <p> Add Entry to Table</p>
+                </li>
+                <li class="move-over-li">
+                  <div class="input-element">
+                    <label for="input-exoplanetName" class="word-search-label"></label>
+                    <input type="text" name ="input-exoplanetName" id="input-exoplanetName" placeholder="Planet Name..." class ="planetName">
+                  </div>
+                </li>
+                <li>
+                  <div class="input-element">
+                    <label for="input-hostSystemID">Select a Host System</label>
+                    <select type="select" name ="input-hostSystemID" id="input-hostSystemID" class = "starHSFK input-search-label">
+                      {{#each hostSystems}}
+                      <option value="{{this.hostSystemID}}">{{this.hostSystemName}}
+                      </option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </li>
+                <li>
+                  <div class="input-element">
+                    <label for="input-numberOfStars"></label>
+                    <input type="text" name ="input-numberOfStars" id="input-numberOfStars" placeholder="Number of Stars..." class ="numStars">
+                  </div>
+                </li>
+                <li>
+                  <div class="input-element">
+                    <label for="input-mass"></label>
+                    <input type="text" name ="input-mass" id="input-mass" placeholder="Mass..." class ="mass">
+                  </div>
+                </li>
+                <li>
+                  <div class="input-element">
+                    <label for="input-orbitalPeriod"></label>
+                    <input type="text" name ="input-orbitalPeriod" id="input-orbitalPeriod" placeholder="Orbital Period..." class ="orbitalPeriod">
+                  </div>
+                </li>
+                <li>
+                  <div class="input-element">
+                    <label for="input-discovery"></label>
+                    <input type="text" name="input-discovery" id="input-discovery" placeholder="Discovery Date..." class ="discovery">
+                  </div>
+                </li>
+                <li>
+                  <div class="input-element">
+                    <input type="submit" class="submit-button">
+                    <!-- <button type="button" id="create-item-button" class = "exo-button" onclick="addRowPlanet();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button> -->
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </form>
 
-        <form id="add-exoplanet-form" method="POST" action="/add-exoplanet-form">
-          <div class = "add-value exoplanet-add">
-            <ul class = "add-value-list">
-              <li>
-                <p> Add Entry to Table</p>
-              </li>
-              <li>
-                <div class="input-element">
-                  <label for="input-exoplanetName"></label>
-                  <input type="text" name ="input-exoplanetName" id="input-exoplanetName" placeholder="Planet Name..." class ="planetName">
-                </div>
-              </li>
-              <li>
-                <div class="input-element">
-                  <label for="input-hostSystemID">Select a Host System</label>
-                  <select type="select" name ="input-hostSystemID" id="input-hostSystemID" class = "starHSFK">
-                    {{#each hostSystems}}
-                    <option value="{{this.hostSystemID}}">{{this.hostSystemName}}
-                    </option>
-                    {{/each}}
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div class="input-element">
-                  <label for="input-numberOfStars"></label>
-                  <input type="text" name ="input-numberOfStars" id="input-numberOfStars" placeholder="Number of Stars..." class ="numStars">
-                </div>
-              </li>
-              <li>
-                <div class="input-element">
-                  <label for="input-mass"></label>
-                  <input type="text" name ="input-mass" id="input-mass" placeholder="Mass..." class ="mass">
-                </div>
-              </li>
-              <li>
-                <div class="input-element">
-                  <label for="input-orbitalPeriod"></label>
-                  <input type="text" name ="input-orbitalPeriod" id="input-orbitalPeriod" placeholder="Orbital Period..." class ="orbitalPeriod">
-                </div>
-              </li>
-              <li>
-                <div class="input-element">
-                  <label for="input-discovery"></label>
-                  <input type="text" name="input-discovery" id="input-discovery" placeholder="Discovery..." class ="discovery">
-                </div>
-              </li>
-              <li>
-                <div class="input-element">
-                  <input type="submit">
-                  <!-- <button type="button" id="create-item-button" class = "exo-button" onclick="addRowPlanet();"><i class="fas fa-plus"></i> <i class="fa fa-table" aria-hidden="true"></i></button> -->
-                </div>
-              </li>
-            </ul>
+          {{!-- Form to search by host System name --}}
+          <div class="search-function-box">
+            <form id="search-hostSystem-html" method='POST' action='/exoplanet-search'>
+                <label for="input-hostSystemName" class="word-search-label">Search by Host System: </label><br>
+                <select type="select" name="input-hostSystem" id="input-hostSystem" class="input-search-label">
+                  {{#each hostSystems}}
+                  <option value="{{this.hostSystemName}}">{{this.hostSystemName}}
+                  </option>
+                  {{/each}}
+                </select>
+
+                <input type="submit" class="submit-button">
+            </form>
+
+              <form id='reset-page' method='GET' action='/exoplanets'>
+                <button type="submit" name="button" class="reset-button">Reset</button>
+            </div>
           </div>
-        </form>
-
-        {{!-- Form to search by host System name --}}
-        <form id="search-hostSystem-html" method='POST' action='/exoplanet-search'>
-            <label for="input-hostSystemName">Search by Host System: </label>
-            <select type="select" name="input-hostSystem" id="input-hostSystem">
-              {{#each hostSystems}}
-              <option value="{{this.hostSystemName}}">{{this.hostSystemName}}
-              </option>
-              {{/each}}
-            </select>
-
-            <input type="submit">
-        </form>
-
-        <form id='reset-page' method='GET' action='/stars'>
-          <button type="submit" name="button">Reset</button>
-
     </main>

@@ -47,11 +47,13 @@
               {{!-- For just the first row, we print each key of the row object as a header cell so we
               know what each column means when the page renders --}}
               <tr>
-                  {{#each data.[0]}}
-                  <th>
-                      {{@key}}
-                  </th>
-                  {{/each}}
+                <th>Star ID </th>
+                <th>Star Name</th>
+                <th>Type</th>
+                <th>Temperature</th>
+                <th>Host System Name</th>
+                <th>Update</th>
+                <th>Delete</th>
               </tr>
           </thead>
 
@@ -61,83 +63,83 @@
               {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
               {{#each data}}
 
-              <tr>
+                <tr>
                   <td>{{this.starID}}</td>
                   <td>{{this.starName}}</td>
                   <td>{{this.type}}</td>
                   <td>{{this.temperature}}</td>
-                  <td>{{this.hostSystemName}}<td>
-
+                  <td>{{this.hostSystemName}}</td>
+                  <td><button type="button" id="edit-item-button" onclick="editRow(this);">Edit</button></td>
                   <td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
-
-
-              </tr>
+                </tr>
               {{/each}}
           </tbody>
 
 
       </table>
 
-      <form class="add-star-form" action="/add-star-form" method="POST">
-        <div class = "add-value">
-          <ul class = "add-value-list">
-            <li>
-              <p> Add Entry to Table</p>
-            </li>
-            <li>
-              <div class="input-element">
-                <label for="input-starName"></label>
-                <input type="text" name ="input-starName" id="input-starName" placeholder="Star Name..." class = "starName">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <label for="input-starType"></label>
-                <input type="text" name ="input-starType" id="input-starType" placeholder="Star type..." class = "starType">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <label for="input-starTemp"></label>
-                <input type="text" name ="input-starTemp" id="input-starTemp" placeholder="Star temperature..." class = "starTemp">
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <label for="input-hostSystemID">Select a Host System</label>
-                <select type="select" name ="input-hostSystemID" id="input-hostSystemID" class = "starHSFK">
+      <div class="container-for-forms">
+        <form class="add-star-form" action="/add-star-form" method="POST">
+          <div class = "add-value">
+            <ul class = "add-value-list">
+              <li>
+                <p> Add Entry to Table</p>
+              </li>
+              <li>
+                <div class="input-element">
+                  <label for="input-starName"></label>
+                  <input type="text" name ="input-starName" id="input-starName" placeholder="Star Name..." class = "starName">
+                </div>
+              </li>
+              <li>
+                <div class="input-element">
+                  <label for="input-starType"></label>
+                  <input type="text" name ="input-starType" id="input-starType" placeholder="Star type..." class = "starType">
+                </div>
+              </li>
+              <li>
+                <div class="input-element">
+                  <label for="input-starTemp"></label>
+                  <input type="text" name ="input-starTemp" id="input-starTemp" placeholder="Star temperature..." class = "starTemp">
+                </div>
+              </li>
+              <li class="for-inline-input">
+                <div class="input-element">
+                  <label for="input-hostSystemID">Select a Host System</label><br>
+                  <select type="select" name ="input-hostSystemID" id="input-hostSystemID" class = "starHSFK input-search-label">
+                    {{#each hostSystems}}
+                    <option value="{{this.hostSystemID}}">{{this.hostSystemName}}
+                    </option>
+                    {{/each}}
+                  </select>
+                </div>
+              </li>
+              <li class="for-inline-input">
+                <div class="input-element">
+                  <input type="submit" class="submit-button">
+                </div>
+              </li>
+            </ul>
+          </div>
+        </form>
+
+        {{!-- Form to search by host System name --}}
+        <div class="search-function-box">
+            <form id="search-hostSystem-html" method='POST' action='/stars-search'>
+                <label for="input-hostSystemName" class="word-search-label">Search by Host System: </label><br>
+                <select type="select" name="input-hostSystem" id="input-hostSystem" class="input-search-label">
                   {{#each hostSystems}}
-                  <option value="{{this.hostSystemID}}">{{this.hostSystemName}}
+                  <option value="{{this.hostSystemName}}">{{this.hostSystemName}}
                   </option>
                   {{/each}}
                 </select>
-              </div>
-            </li>
-            <li>
-              <div class="input-element">
-                <input type="submit">
-              </div>
-            </li>
-          </ul>
-        </div>
-      </form>
 
-      {{!-- Form to search by host System name --}}
-      <form id="search-hostSystem-html" method='POST' action='/stars-search'>
-          <label for="input-hostSystemName">Search by Host System: </label>
-          <select type="select" name="input-hostSystem" id="input-hostSystem">
-            {{#each hostSystems}}
-            <option value="{{this.hostSystemName}}">{{this.hostSystemName}}
-            </option>
-            {{/each}}
-          </select>
+                <input type="submit" class="submit-button">
+              </form>
 
-          <input type="submit">
-      </form>
-
-      <form id='reset-page' method='GET' action='/stars'>
-        <button type="submit" name="button">Reset</button>
-
-
+              <form id='reset-page' method='GET' action='/stars'>
+              <button type="submit" name="button" class="reset-button">Reset</button>
+          </div>  
+      </div>
 
     </main>
