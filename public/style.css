@@ -300,7 +300,7 @@ thead {
     background: rgb(233, 166, 66);
   }
   100% {
-    background:rgba(17, 19, 44, 0);
+    background:rgba(255, 255, 255, 0.589);
   }
 }
 
@@ -314,6 +314,7 @@ thead {
   animation-name: editPulse;
   animation-duration: 2s;
   animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
 #create-item-button {

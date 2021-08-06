@@ -40,12 +40,16 @@ function editRow(btn){
     //base color saved
     var baseBack = row.style.backgroundColor 
 
-    //blink on delete
+    //blink on edit
     row.classList.add("flashEdit")
-    setTimeout(function(){row.classList.remove("flashEdit")},2000)
-    row.style.backgroundColor = baseBack
 
     //put update query NOTE row contains current row
+
+    //get user input replace current function
+
+    //return to previous row color (uncomment below after user input and query is set up)
+    //row.classList.remove("flashEdit")
+    //row.style.backgroundColor = baseBack
 }
 
 function addRowStar () {
