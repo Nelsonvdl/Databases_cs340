@@ -235,7 +235,7 @@ app.get('/exoplanets', function(req, res)
     db.pool.query(query1, function(error, rows, fields){
 
         // Save the exoplanets
-        console.log(rows);
+        // console.log(rows);
         let planets = rows;
 
         db.pool.query(query2, function(error, rows, fields){
@@ -309,23 +309,29 @@ app.post('/add-exoplanet-form', function(req, res){
     }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO exoplanets (hostSystemID, exoplanetName, numberOfStars, mass, orbitalPeriod, discovery) VALUES ('${hostSystemID}', '${name}', ${numberOfStars}, ${mass}, ${orbitalPeriod}, ${discovery})`;
+    let query1 = `INSERT INTO exoplanets (hostSystemID, exoplanetName, numberOfStars, mass, orbitalPeriod, discovery) VALUES ('${hostSystemID}', '${name}', ${numberOfStars}, ${mass}, ${orbitalPeriod}, ${discovery})`;
+
+    let query2 = `SELECT e.planetID, s.starID FROM exoplanets AS e INNER JOIN stars as s ON e.hostSystemID = s.hostSystemID WHERE exoplanetName = ('${name}');`;
+
+
     db.pool.query(query1, function(error, rows, fields){
 
-        // Check to see if there was an error
-        if (error) {
+      db.pool.query(query2, function(error, rows, fields){
+        let erp = rows;
+        let planet = erp[0].planetID;
+        let star = erp[0].starID;
 
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error)
-            res.sendStatus(400);
-        }
+        let query3 = `INSERT INTO exoplanetStarRelationShip VALUES ('${star}', '${planet}');`;
 
-        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
-        // presents it on the screen
-        else
-        {
-            res.redirect('/exoplanets');
-        }
+        db.pool.query(query3, function(error, rows, fields){
+          console.log('success')
+          res.redirect('/exoplanets');
+
+        })
+
+
+      })
+
     })
 })
 
@@ -333,6 +339,7 @@ app.get('/EPSRelation', function(req, res)
 {
 
     let query1 = `SELECT s.starName, ep.exoplanetName FROM exoplanetStarRelationShip epr INNER JOIN exoplanets ep ON ep.planetID = epr.planetID INNER JOIN stars s ON s.starID = epr.starID;`;
+
 
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields){
