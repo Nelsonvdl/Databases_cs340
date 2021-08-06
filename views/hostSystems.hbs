@@ -81,7 +81,11 @@
 
           <div class="input-element">
             <label for="input-galaxy">Galaxy:</label>
-            <input type="text" name="input-galaxy" id="input-galaxy">
+            <select type="select" name="input-galaxy" id="input-galaxy">
+              {{#each galaxies}}
+              <option value = "{{this.galaxyID}}">{{this.galaxyName}}</option>
+              {{/each}}
+            </select>
           </div>
 
 

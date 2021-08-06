@@ -104,8 +104,13 @@
             </li>
             <li>
               <div class="input-element">
-                <label for="input-hostSystemID"></label>
-                <input type="text" name ="input-hostSystemID" id="input-hostSystemID" placeholder="Host System ID..." class = "starHSFK">
+                <label for="input-hostSystemID">Select a Host System</label>
+                <select type="select" name ="input-hostSystemID" id="input-hostSystemID" class = "starHSFK">
+                  {{#each hostSystems}}
+                  <option value="{{this.hostSystemID}}">{{this.hostSystemName}}
+                  </option>
+                  {{/each}}
+                </select>
               </div>
             </li>
             <li>
