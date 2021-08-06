@@ -95,13 +95,18 @@
     </form>
 
     {{!-- Form to search by galaxy name --}}
-    <form id="search-galaxy-html" method='GET' action='/hostSystems'>
+    <form id="search-galaxy-html" method='POST' action='/hostSystems-search'>
         <label for="input-galaxyName">Search by Galaxy Name: </label>
-        <input type="text" name="galaxyName" id="input-galaxyName-html-search">
+        <select type="select" name="input-galaxy" id="input-galaxy">
+          {{#each galaxies}}
+          <option value = "{{this.galaxyName}}">{{this.galaxyName}}</option>
+          {{/each}}
+        </select>
 
         <input type="submit">
-        <a href='/'><button>Reset</button></a>
     </form>
 
+    <form id='reset-page' method='GET' action='/hostSystems'>
+      <button type="submit" name="button">Reset</button>
 
     </main>

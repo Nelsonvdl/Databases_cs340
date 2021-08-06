@@ -135,4 +135,20 @@
           </div>
         </form>
 
+        {{!-- Form to search by host System name --}}
+        <form id="search-hostSystem-html" method='POST' action='/exoplanet-search'>
+            <label for="input-hostSystemName">Search by Host System: </label>
+            <select type="select" name="input-hostSystem" id="input-hostSystem">
+              {{#each hostSystems}}
+              <option value="{{this.hostSystemName}}">{{this.hostSystemName}}
+              </option>
+              {{/each}}
+            </select>
+
+            <input type="submit">
+        </form>
+
+        <form id='reset-page' method='GET' action='/stars'>
+          <button type="submit" name="button">Reset</button>
+
     </main>

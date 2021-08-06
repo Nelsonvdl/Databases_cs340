@@ -77,23 +77,40 @@ app.post('/add-Galaxy-Form', function(req, res) {
 
 app.get('/hostSystems', function(req, res){
 // Declare Query 1
-// NOT DISPLAYING BOTH THE hostSystem NAME AND galaxy NAME
-let query1 = 'SELECT h.hostSystemID, g.galaxyName, h.hostSystemName, g.galaxyID FROM hostSystems as h INNER JOIN galaxies as g ON g.galaxyID = h.galaxyID;';
+let query1 = `SELECT h.hostSystemID, g.galaxyName, h.hostSystemName, g.galaxyID FROM hostSystems as h INNER JOIN galaxies as g ON g.galaxyID = h.galaxyID;`;
 let query2 = `SELECT * FROM galaxies;`
 db.pool.query(query1, function(error, rows, fields){
   let hostSystemsData = rows;
   db.pool.query(query2, function(error, rows, fields){
     let galaxiesData = rows;
-    console.log('Host systems ' + hostSystemsData);
-    console.log('Galaxies ' + galaxiesData[5].galaxyName);
 
     res.render('hostSystems', {data: hostSystemsData, galaxies: galaxiesData});
   });
-
-
-
 })
 });
+
+// VERY REPETITIVE
+// Search by hostSystem
+app.post('/hostSystems-search', function(req, res){
+// Declare Query 1
+let data = req.body;
+let galaxyID = data['input-galaxy'];
+console.log(data);
+
+    // NEED TO CHECK IF QUERY 1 is empty
+
+let query1 = `SELECT h.hostSystemID, g.galaxyName, h.hostSystemName, g.galaxyID FROM hostSystems as h INNER JOIN galaxies as g ON g.galaxyID = h.galaxyID WHERE g.galaxyName = ('${galaxyID}');`;
+let query2 = `SELECT * FROM galaxies;`
+db.pool.query(query1, function(error, rows, fields){
+  let hostSystemsData = rows;
+  db.pool.query(query2, function(error, rows, fields){
+    let galaxiesData = rows;
+
+    res.render('hostSystems', {data: hostSystemsData, galaxies: galaxiesData});
+  });
+})
+});
+
 
 app.post('/add-hostSystem-form', function(req, res) {
   // get incoming data
@@ -114,9 +131,11 @@ app.post('/add-hostSystem-form', function(req, res) {
 });
 });
 
+app.get('/stars', function(req, res){
 
-app.get('/stars', function(req, res)
-{
+  let data = req.body;
+  let galaxyID = data['input-galaxy'];
+  console.log(data);
     // Declare Query 1
     // NOT DISPLAYING BOTH THE hostSystem NAME AND galaxy NAME
     let query1 = 'SELECT s.starID, s.starName, s.type, s.temperature, h.hostSystemName FROM stars as s INNER JOIN hostSystems as h ON h.hostSystemID = s.hostSystemID;';
@@ -142,6 +161,37 @@ app.get('/stars', function(req, res)
 
       });
 });
+
+app.post('/stars-search', function(req, res){
+
+  let data = req.body;
+  console.log(data);
+  let hostSystemName = data['input-hostSystem'];
+  console.log('name ' + hostSystemName);
+
+    // Declare Query 1
+    let query1 = `SELECT s.starID, s.starName, s.type, s.temperature, h.hostSystemName FROM stars as s INNER JOIN hostSystems as h ON h.hostSystemID = s.hostSystemID WHERE h.hostSystemName = ('${hostSystemName}');`;
+
+        // NEED TO CHECK IF QUERY 1 is empty
+
+    let query2 = `SELECT * FROM hostSystems;`;
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Save the hostSystems
+        console.log(rows);
+        let stars = rows;
+
+        db.pool.query(query2, function(error, rows, fields){
+          let hostSystemsData = rows;
+
+          res.render('stars', {data: stars, hostSystems: hostSystemsData});
+        })
+
+
+      });
+});
+
 
 
 app.post('/add-star-Form', function(req, res) {
@@ -177,7 +227,7 @@ app.post('/add-star-Form', function(req, res) {
 app.get('/exoplanets', function(req, res)
 {
     // Declare Query 1
-    let query1 = 'SELECT e.planetID, h.hostSystemName, e.exoplanetName, e.numberOfStars, e.mass, e.orbitalPeriod, e.discovery FROM exoplanets as e INNER JOIN hostSystems as h ON e.hostSystemID = h.hostSystemID;';
+    let query1 = `SELECT e.planetID, h.hostSystemName, e.exoplanetName, e.numberOfStars, e.mass, e.orbitalPeriod, e.discovery FROM exoplanets as e INNER JOIN hostSystems as h ON e.hostSystemID = h.hostSystemID;`;
 
     let query2 = `SELECT * FROM hostSystems;`;
 
@@ -198,6 +248,34 @@ app.get('/exoplanets', function(req, res)
       });
 });
 
+app.post('/exoplanet-search', function(req, res){
+
+  let data = req.body;
+  console.log(data);
+  let hostSystemName = data['input-hostSystem'];
+  console.log('name ' + hostSystemName);
+
+    // Declare Query 1
+    let query1 = `SELECT e.planetID, h.hostSystemName, e.exoplanetName, e.numberOfStars, e.mass, e.orbitalPeriod, e.discovery FROM exoplanets as e INNER JOIN hostSystems as h ON e.hostSystemID = h.hostSystemID WHERE h.hostSystemName = ('${hostSystemName}');`;
+
+    // NEED TO CHECK IF QUERY 1 is empty
+
+    let query2 = `SELECT * FROM hostSystems;`;
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+        // Save the hostSystems
+        console.log(rows);
+        let stars = rows;
+
+        db.pool.query(query2, function(error, rows, fields){
+          let hostSystemsData = rows;
+
+          res.render('exoplanets', {data: stars, hostSystems: hostSystemsData});
+        })
+
+
+      });
+});
 
 
 app.post('/add-exoplanet-form', function(req, res){
