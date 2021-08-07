@@ -113,7 +113,6 @@ a:focus {
 .add-value{
   margin-top: 60px;
   margin-left: 50px;
-  height: 220px;
   width: 280px;
   display:inline-block;
   color: white;
@@ -126,7 +125,6 @@ a:focus {
   background-color:rgba(46, 62, 104, 0.45);
   margin-left: 55px;
   padding: 10px;
-  height: 120px;
   width: 280px;
   color: white;
 

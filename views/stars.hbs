@@ -52,8 +52,6 @@
                 <th>Type</th>
                 <th>Temperature</th>
                 <th>Host System Name</th>
-                <th>Update</th>
-                <th>Delete</th>
               </tr>
           </thead>
 
@@ -69,8 +67,6 @@
                   <td>{{this.type}}</td>
                   <td>{{this.temperature}}</td>
                   <td>{{this.hostSystemName}}</td>
-                  <td><button type="button" id="edit-item-button" onclick="editRow(this);">Edit</button></td>
-                  <td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
                 </tr>
               {{/each}}
           </tbody>
@@ -140,6 +136,65 @@
               <form id='reset-page' method='GET' action='/stars'>
               <button type="submit" name="button" class="reset-button">Reset</button>
           </div>  
-      </div>
+      
 
+        {{!--Delete the class is reused from search for styling--}}
+          <div class="search-function-box">
+                <form id="delete-star-html" method='POST' action='/stars-delete'>
+                    <label for="input-star" class="word-search-label">Delete Star: </label><br>
+                    <select type="select" name="input-star" id="input-star" class="input-search-label">
+                      {{#each data}}
+                      <option value="{{this.starName}}">{{this.starName}}
+                      </option>
+                      {{/each}}
+                    </select>
+
+                    <button type="submit" name="button" class="reset-button">Delete</button>
+                  </form>
+          </div>  
+
+            {{!--Edit reuses search styling--}}
+            <div class="search-function-box">
+              <ul class = "add-value-list">
+                <li>
+                  <label for="input-star" class="word-search-label">Edit Star: </label><br>
+                </li>
+                <liclass="for-inline-input">
+                  <select type="select" name="input-star" id="input-star" class="input-search-label">
+                    {{#each data}}
+                    <option value="{{this.starName}}">{{this.starName}}
+                    </option>
+                    {{/each}}
+                  </select>
+                <li class="for-inline-input">
+                  <div class="input-element">
+                    <button type="submit" id="edit-item-button">Edit</button>
+                  </div>
+                </li>
+                <li>
+                  <div class="input-element">
+                    <label for="input-starType"></label>
+                    <input type="text" name ="input-starType" id="input-starType" placeholder="Update type..." class = "starType">
+                  </div>
+                </li>
+                <li>
+                  <div class="input-element">
+                    <label for="input-starTemp"></label>
+                    <input type="text" name ="input-starTemp" id="input-starTemp" placeholder="Update temperature..." class = "starTemp">
+                  </div>
+                </li>
+                <li class="for-inline-input">
+                  <div class="input-element">
+                    <label for="input-hostSystemID">Update Host System:</label><br>
+                    <select type="select" name ="input-hostSystemID" id="input-hostSystemID" class = "starHSFK input-search-label">
+                      {{#each hostSystems}}
+                      <option value="{{this.hostSystemID}}">{{this.hostSystemName}}
+                      </option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </li>
+                  
+              </ul>
+            </div>
     </main>

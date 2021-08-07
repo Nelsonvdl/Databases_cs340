@@ -192,6 +192,50 @@ app.post('/stars-search', function(req, res){
       });
 });
 
+app.post('/stars-delete', function(req, res){
+
+  let data = req.body;
+  console.log(data);
+  let starName = data['input-star'];
+  console.log('name ' + starName);
+
+    // Declare Query 1
+    let query1 = `DELETE FROM stars as s WHERE s.starName = ('${starName}');`;
+
+        // NEED TO CHECK IF QUERY 1 is empty
+
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+
+        })
+    res.render('stars');
+});
+
+app.post('/stars-edit', function(req, res){
+
+  let data = req.body;
+
+  let name = data["input-starName"];
+  let starType = data["input-starType"];
+  
+  let starTemp = data["input-starTemp"];
+  
+
+  let hostSystemID = parseInt(data["input-hostSystemID"]);
+
+  // query to update stars
+  query1 = `UPDATE stars SET stars.type = ('${starType}'), stars.temperature=('${starTemp}'), stars.hostSystemID=('${hostSystemID}') WHERE stars.name = ('${name}');`;
+  db.pool.query(query1, function(error, rows, fields){
+    if(error) {
+      console.log(error)
+      res.sendStatus(400);
+  } else {
+    res.redirect('/stars');
+  }
+});
+});
+
+
 
 
 app.post('/add-star-Form', function(req, res) {
