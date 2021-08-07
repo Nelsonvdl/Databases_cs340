@@ -208,7 +208,7 @@ app.post('/stars-delete', function(req, res){
     db.pool.query(query1, function(error, rows, fields){
 
         })
-    res.render('stars');
+    res.render('/stars');
 });
 
 app.post('/stars-edit', function(req, res){
