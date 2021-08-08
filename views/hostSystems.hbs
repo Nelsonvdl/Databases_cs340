@@ -107,7 +107,7 @@
         {{!-- Form to search by galaxy name --}}
         <div class="search-function-box">
           <form id="search-galaxy-html" method='POST' action='/hostSystems-search'>
-              <label for="input-galaxyName" class="word-search-label">Search by Galaxy Name: </label><br>
+              <label for="input-galaxyName" class="word-search-label">Filter by Galaxy Name: </label><br>
               <select type="select" name="input-galaxy" id="input-galaxy" class="input-search-label">
                 {{#each galaxies}}
                 <option value = "{{this.galaxyName}}">{{this.galaxyName}}</option>
