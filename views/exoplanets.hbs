@@ -54,8 +54,6 @@
                 <th>Mass</th>
                 <th>Orbital Period</th>
                 <th>Discovery Date</th>
-                <th>Update</th>
-                <th>Delete</th>
               </tr>
           </thead>
 
@@ -73,9 +71,6 @@
                   <td>{{this.mass}}</td>
                   <td>{{this.orbitalPeriod}}</td>
                   <td>{{this.discovery}}</td>
-                  <td><button type="button" id="edit-item-button" onclick="editRow(this);">Edit</button></td>
-                  <td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
-
                 </tr>
               {{/each}}
           </tbody>

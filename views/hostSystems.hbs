@@ -50,8 +50,6 @@
                 <th>Host System ID </th>
                 <th>Host System Name</th>
                 <th>Galaxy Name</th>
-                <th>Update</th>
-                <th>Delete</th>
               </tr>
           </thead>
 
@@ -65,8 +63,6 @@
                   <td>{{this.hostSystemID}}
                   <td>{{this.hostSystemName}}</td>
                   <td>{{this.galaxyName}}
-                  <td><button type="button" id="edit-item-button" onclick="editRow(this);">Edit</button></td>
-                  <td><button type="button" id="delete-item-button" onclick="deleteRow(this);"><i class="fas fa-minus"></i> <i class="fa fa-table" aria-hidden="true"></i></button></td>
               </tr>
               {{/each}}
           </tbody>
