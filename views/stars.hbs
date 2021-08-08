@@ -64,8 +64,8 @@
                 <tr>
                   <td>{{this.starID}}</td>
                   <td>{{this.starName}}</td>
-                  <td>{{this.type}}</td>
-                  <td>{{this.temperature}}</td>
+                  <td>{{#if this.type}}{{this.type}}{{else}}Null{{/if}}</td>
+                  <td>{{#if this.temperature}}{{this.temperature}}{{else}}Null{{/if}}</td>
                   <td>{{this.hostSystemName}}</td>
                 </tr>
               {{/each}}
