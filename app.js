@@ -162,6 +162,7 @@ app.get('/stars', function(req, res){
       });
 });
 
+// Searches for all the stars in a host System
 app.post('/stars-search', function(req, res){
 
   let data = req.body;
@@ -192,51 +193,64 @@ app.post('/stars-search', function(req, res){
       });
 });
 
+// Deletes a star from the stars table and exoplanetStarRelationShip table
 app.post('/stars-delete', function(req, res){
 
   let data = req.body;
   console.log(data);
-  let starName = data['input-star'];
-  console.log('name ' + starName);
+  let name = data['input-star'];
+  console.log('name ' + name);
 
     // Declare Query 1
-    let query1 = `DELETE FROM stars as s WHERE s.starName = ('${starName}');`;
-
-        // NEED TO CHECK IF QUERY 1 is empty
+    let query1 = `ALTER TABLE exoplanetStarRelationShip DROP FOREIGN KEY exoplanetStarRelationShip_ibfk_1;`
 
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields){
-
+      // run second query
+      let query2 = `DELETE FROM stars WHERE starName = ('${name}');`;
+      db.pool.query(query2, function(error, rows, fields){
+        let query3 = `ALTER TABLE exoplanetStarRelationShip ADD FOREIGN KEY (starID) REFERENCES stars(starID);`
+        db.pool.query(query3, function(error, rows, fields){
+          res.redirect('/stars');
         })
-    res.render('/stars');
+
+
+      });
+    });
 });
 
+// Edits a single star
 app.post('/stars-edit', function(req, res){
 
   let data = req.body;
 
-  let name = data["input-starName"];
+  let name = data["input-star"];
+  console.log('name ' + name)
   let starType = data["input-starType"];
-  
+  console.log('type ' + starType)
+
   let starTemp = data["input-starTemp"];
-  
+  console.log('temp ' + starTemp)
+
+  let newName = data["input-starNameNew"];
+  console.log(newName)
 
   let hostSystemID = parseInt(data["input-hostSystemID"]);
+  console.log('host System ' + hostSystemID)
+
 
   // query to update stars
-  query1 = `UPDATE stars SET stars.type = ('${starType}'), stars.temperature=('${starTemp}'), stars.hostSystemID=('${hostSystemID}') WHERE stars.name = ('${name}');`;
+  let query1 = `UPDATE stars SET stars.starName = ('${newName}'), stars.type = ('${starType}'), stars.temperature=('${starTemp}'), stars.hostSystemID=('${hostSystemID}') WHERE stars.StarName = ('${name}');`;
   db.pool.query(query1, function(error, rows, fields){
     if(error) {
       console.log(error)
       res.sendStatus(400);
   } else {
-    res.redirect('/stars');
+    console.log(rows)
+    res.render('stars');
   }
 });
 });
-
-
-
 
 app.post('/add-star-Form', function(req, res) {
   // get incoming data
@@ -263,7 +277,7 @@ app.post('/add-star-Form', function(req, res) {
       console.log(error)
       res.sendStatus(400);
   } else {
-    res.redirect('/stars');
+    res.redirect('stars');
   }
 });
 });
@@ -361,14 +375,21 @@ app.post('/add-exoplanet-form', function(req, res){
     db.pool.query(query1, function(error, rows, fields){
 
       db.pool.query(query2, function(error, rows, fields){
+
         let erp = rows;
-        let planet = erp[0].planetID;
-        let star = erp[0].starID;
 
-        let query3 = `INSERT INTO exoplanetStarRelationShip VALUES ('${star}', '${planet}');`;
 
-        db.pool.query(query3, function(error, rows, fields){
-          console.log('success')
+        for (let i = 0; i < erp.length; i++) {
+          let planet = erp[i].planetID;
+          let star = erp[i].starID;
+
+          let query3 = `INSERT INTO exoplanetStarRelationShip VALUES ('${star}', '${planet}');`;
+          db.pool.query(query3, function(error, rows, fields){
+            console.log('added ' + planet + ' ' + star);
+        })
+      }
+
+
           res.redirect('/exoplanets');
 
         })
@@ -377,7 +398,7 @@ app.post('/add-exoplanet-form', function(req, res){
       })
 
     })
-})
+
 
 app.get('/EPSRelation', function(req, res)
 {

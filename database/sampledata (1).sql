@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS galaxies;
 CREATE TABLE galaxies (
   galaxyID INT(11) AUTO_INCREMENT PRIMARY KEY,
-  name varchar(255)
+  galaxyName varchar(255)
 );
 
 INSERT INTO galaxies VALUES (1, 'NGC'), (2, 'E0102'), (3, 'Unknown'), (4, 'Milky Way');
@@ -9,9 +9,10 @@ INSERT INTO galaxies VALUES (1, 'NGC'), (2, 'E0102'), (3, 'Unknown'), (4, 'Milky
 DROP TABLE IF EXISTS hostSystems;
 CREATE TABLE hostSystems (
  hostSystemID INT(11) AUTO_INCREMENT PRIMARY KEY,
- name varchar(255),
+ hostSystemName varchar(255),
  galaxyID INT(11) NOT NULL,
  FOREIGN KEY (galaxyID) REFERENCES galaxies(galaxyID)
+ ON DELETE CASCADE
 );
 
 INSERT INTO hostSystems VALUES (1, 'AU Mic', 1),  (2, 'DS Tuc', 2), (3, 'GJ 1252', 3), (4, 'GJ 143', 4);
@@ -19,11 +20,12 @@ INSERT INTO hostSystems VALUES (1, 'AU Mic', 1),  (2, 'DS Tuc', 2), (3, 'GJ 1252
 DROP TABLE IF EXISTS stars;
 CREATE TABLE stars (
   starID int(11) AUTO_INCREMENT PRIMARY KEY,
-  name varchar(255),
+  starName varchar(255),
   type varchar(255),
   temperature int(11),
   hostSystemID int(11),
   FOREIGN KEY (hostSystemID) REFERENCES hostSystems(hostSystemID)
+  ON DELETE CASCADE
 );
 
 INSERT INTO stars VALUES (1, 'AU Mic', NULL, NULL, 1), (2, 'DS Tuc B', NULL, NULL, 2), (3, 'DS Tuc A', NULL, NULL, 2), (4, 'GJ 1252', NULL, 3458, 3), (5, 'GJ 143', NULL, 4571, 4);
@@ -32,8 +34,8 @@ DROP TABLE IF EXISTS exoplanets;
 CREATE TABLE exoplanets (
   planetID INT(11) AUTO_INCREMENT PRIMARY KEY,
   hostSystemID INT(11) NOT NULL,
-  FOREIGN KEY (hostSystemID) REFERENCES hostSystems(hostSystemID),
-  name varchar(255),
+  FOREIGN KEY (hostSystemID) REFERENCES hostSystems(hostSystemID) ON DELETE CASCADE,
+  exoplanetName varchar(255),
   numberOfStars INT(11) NOT NULL,
   mass INT(11),
   orbitalPeriod INT(11),
@@ -50,6 +52,7 @@ CREATE TABLE exoplanetStarRelationShip (
   FOREIGN KEY (starID) REFERENCES stars(starID),
   planetID INT(11),
   FOREIGN KEY (planetID) REFERENCES exoplanets(planetID)
+  ON DELETE CASCADE
 );
 
 INSERT INTO exoplanetStarRelationShip VALUES (2, 1), (3, 1), (4, 2), (5, 3), (5, 4);

@@ -121,7 +121,7 @@
 
         {{!-- Form to search by host System name --}}
         <div class="search-function-box">
-            <form id="search-hostSystem-html" method='POST' action='/stars-search'>
+            <form id="search-hostSystem-html" method="POST" action="/stars-search">
                 <label for="input-hostSystemName" class="word-search-label">Search by Host System: </label><br>
                 <select type="select" name="input-hostSystem" id="input-hostSystem" class="input-search-label">
                   {{#each hostSystems}}
@@ -135,12 +135,13 @@
 
               <form id='reset-page' method='GET' action='/stars'>
               <button type="submit" name="button" class="reset-button">Reset</button>
-          </div>  
-      
+            </form>
+          </div>
+
 
         {{!--Delete the class is reused from search for styling--}}
           <div class="search-function-box">
-                <form id="delete-star-html" method='POST' action='/stars-delete'>
+                <form id="delete-star-html" action="/stars-delete" method="POST">
                     <label for="input-star" class="word-search-label">Delete Star: </label><br>
                     <select type="select" name="input-star" id="input-star" class="input-search-label">
                       {{#each data}}
@@ -151,16 +152,16 @@
 
                     <button type="submit" name="button" class="reset-button">Delete</button>
                   </form>
-          </div>  
+          </div>
 
             {{!--Edit reuses search styling--}}
             <div class="search-function-box">
-              <form id="edit-star-html" method='POST' action='/stars-delete'>
+              <form id="edit-star-html" method='POST' action='/stars-edit'>
                 <ul class = "add-value-list">
                   <li>
                     <label for="input-star" class="word-search-label">Edit Star: </label><br>
                   </li>
-                  <liclass="for-inline-input">
+                  <li class="for-inline-input">
                     <select type="select" name="input-star" id="input-star" class="input-search-label">
                       {{#each data}}
                       <option value="{{this.starName}}">{{this.starName}}
@@ -170,6 +171,12 @@
                   <li class="for-inline-input">
                     <div class="input-element">
                       <button type="submit" id="edit-item-button">Edit</button>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="input-element">
+                      <label for="input-starNameNew"></label>
+                      <input type="text" name ="input-starNameNew" id="input-starNameNew" placeholder="Update Name..." class = "starType">
                     </div>
                   </li>
                   <li>
@@ -195,7 +202,7 @@
                       </select>
                     </div>
                   </li>
-                    
+
                 </ul>
               </form>
             </div>
