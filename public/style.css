@@ -129,6 +129,20 @@ a:focus {
   color: white;
 
 }
+
+.explanation-for-sol-planets{
+  margin-top: 20px;
+  position:absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color:rgba(104, 46, 46, 0.45);
+  margin-left: 55px;
+  padding: 10px;
+  width: 280px;
+  height: 220px;
+  color: white;
+}
+
 .input-search-label {
   padding: 5px;
   background-color: rgba(17, 19, 44, 0.45);
@@ -284,12 +298,27 @@ thead {
   color:rgb(214, 214, 214);
 }
 
+.hide-button{
+  background-color: rgb(233, 166, 66);
+  height: 35px;
+  border: none;
+  color: white;
+  border-radius: 2px;
+}
+
+.hide-button:hover {
+  background-color: rgb(168, 121, 50);
+  cursor: pointer;
+  color:rgb(214, 214, 214);
+}
+
 @keyframes deletePulse {
   0% {
     background: rgb(230, 78, 78);
   }
   100% {
     background:rgba(17, 19, 44, 0);
+    color:rgba(17, 19, 44, 0);
   }
 }
 
@@ -304,13 +333,13 @@ thead {
 
 .flashDelete {
   animation-name: deletePulse;
-  animation-duration: 2s;
+  animation-duration: 2.2s;
   animation-iteration-count: 1;
 }
 
 .flashEdit {
   animation-name: editPulse;
-  animation-duration: 2s;
+  animation-duration: 2.2s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }

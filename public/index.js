@@ -16,6 +16,15 @@ iconsPlus.setAttribute("class", "fas fa-plus");
 
 //var iconsChart = document.createElement('i');
 //iconsChart.setAttribute("class", "fa fa-table");
+function hide(btn){
+    div = btn.closest('div')
+
+    //blink on delete
+    div.classList.add("flashDelete")
+    btn.classList.add("flashDelete")
+    setTimeout(function(){div.remove()},2000)
+    
+}
 
 function deleteRow(btn){
     console.log("Preform Delete sql query...")
