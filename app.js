@@ -247,7 +247,7 @@ app.post('/stars-edit', function(req, res){
       res.sendStatus(400);
   } else {
     console.log(rows)
-    res.render('stars');
+    res.redirect('/stars');
   }
 });
 });
