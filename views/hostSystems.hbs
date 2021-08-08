@@ -43,9 +43,6 @@
 
           {{!-- Header section --}}
           <thead>
-
-              {{!-- For just the first row, we print each key of the row object as a header cell so we
-              know what each column means when the page renders --}}
               <tr>
                 <th>Host System ID </th>
                 <th>Host System Name</th>
@@ -79,13 +76,13 @@
                     <li class="move-over-li">
                       <div class="input-element">
                         <label for="input-hostSystem" class="word-search-label"></label>
-                        <input type="text" name="input-hostSystem" id="input-hostSystem" placeholder="Host System Name...">
+                        <input type="text" name="input-hostSystem" id="input-hostSystem" placeholder="Host System Name..." required>
                       </div>
                     </li>
                     <li class="for-inline-input">
                       <div class="input-element">
                         <label for="input-galaxy">Galaxy:</label>
-                        <select type="select" name="input-galaxy" id="input-galaxy" class="input-search-label">
+                        <select type="select" name="input-galaxy" id="input-galaxy" class="input-search-label" required>
                           {{#each galaxies}}
                           <option value = "{{this.galaxyID}}">{{this.galaxyName}}</option>
                           {{/each}}

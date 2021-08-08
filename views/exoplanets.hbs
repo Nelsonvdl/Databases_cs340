@@ -86,13 +86,13 @@
                 <li class="move-over-li">
                   <div class="input-element">
                     <label for="input-exoplanetName" class="word-search-label"></label>
-                    <input type="text" name ="input-exoplanetName" id="input-exoplanetName" placeholder="Planet Name..." class ="planetName">
+                    <input type="text" name ="input-exoplanetName" id="input-exoplanetName" placeholder="Planet Name..." class ="planetName" required>
                   </div>
                 </li>
                 <li>
                   <div class="input-element">
                     <label for="input-hostSystemID">Select a Host System</label>
-                    <select type="select" name ="input-hostSystemID" id="input-hostSystemID" class = "starHSFK input-search-label">
+                    <select type="select" name ="input-hostSystemID" id="input-hostSystemID" class = "starHSFK input-search-label" required>
                       {{#each hostSystems}}
                       <option value="{{this.hostSystemID}}">{{this.hostSystemName}}
                       </option>
@@ -103,7 +103,7 @@
                 <li>
                   <div class="input-element">
                     <label for="input-numberOfStars"></label>
-                    <input type="text" name ="input-numberOfStars" id="input-numberOfStars" placeholder="Number of Stars..." class ="numStars">
+                    <input type="text" name ="input-numberOfStars" id="input-numberOfStars" placeholder="Number of Stars..." class ="numStars" required>
                   </div>
                 </li>
                 <li>
@@ -160,5 +160,5 @@
             </p>
             <button type="button" name="button" class="hide-button" onclick="hide(this)">Hide</button>
           </div>
-        
+
     </main>
