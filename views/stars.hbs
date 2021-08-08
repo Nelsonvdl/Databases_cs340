@@ -92,7 +92,7 @@
               <li>
                 <div class="input-element">
                   <label for="input-starName"></label>
-                  <input type="text" name ="input-starName" id="input-starName" placeholder="Star Name..." class = "starName">
+                  <input type="text" name ="input-starName" id="input-starName" placeholder="Star Name..." class = "starName" required>
                 </div>
               </li>
               <li>
@@ -110,7 +110,7 @@
               <li class="for-inline-input">
                 <div class="input-element">
                   <label for="input-hostSystemID">Select a Host System</label><br>
-                  <select type="select" name ="input-hostSystemID" id="input-hostSystemID" class = "starHSFK input-search-label">
+                  <select type="select" name ="input-hostSystemID" id="input-hostSystemID" class = "starHSFK input-search-label" required>
                     {{#each hostSystems}}
                     <option value="{{this.hostSystemID}}">{{this.hostSystemName}}
                     </option>
