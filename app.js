@@ -22,7 +22,6 @@ app.engine('.hbs', exphbs({
 }));
 app.set('view engine', '.hbs');
 
-
 PORT = 9125;
 
 // Database

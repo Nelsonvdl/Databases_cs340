@@ -62,9 +62,17 @@
               {{#each data}}
 
                 <tr>
-                  <td>{{this.starID}}</td>
-                  <td>{{this.starName}}</td>
-                  <td>{{this.type}}</td>
+                  <td>
+                      {{this.starID}}
+                  </td>
+                  <td>
+                    {{#if (isdefined this.starName)}}{{this.starName}}{{else}}'Null'{{/if}}
+                      {{!--{{this.starName}}--}}
+                  </td>
+                  <td>
+                     {{#if this.type}}{{this.type}}{{else}}Null{{/if}}
+                    {{!--{{this.type}}--}}
+                  </td>
                   <td>{{this.temperature}}</td>
                   <td>{{this.hostSystemName}}</td>
                 </tr>
