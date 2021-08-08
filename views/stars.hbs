@@ -62,19 +62,11 @@
               {{#each data}}
 
                 <tr>
-                  <td>
-                      {{this.starID}}
-                  </td>
-                  <td>
-                    {{#if this.starName}}{{this.starName}}{{else}}Null{{/if}}
-                      {{!--{{this.starName}}--}}
-                  </td>
-                  <td>
-                     {{#if this.type}}{{this.type}}{{else}}Null{{/if}}
-                    {{!--{{this.type}}--}}
-                  </td>
-                  <td>{{#if this.temperature}}{{this.temperature}}{{else}}Null{{/if}}</td>
-                  <td>{{#if this.hostSystemName}}{{this.hostSystemName}}{{else}}Null{{/if}}</td>
+                  <td>{{this.starID}}</td>
+                  <td>{{this.starName}}</td>
+                  <td>{{this.type}}</td>
+                  <td>{{this.temperature}}</td>
+                  <td>{{this.hostSystemName}}</td>
                 </tr>
               {{/each}}
           </tbody>
@@ -170,7 +162,7 @@
                     <label for="input-star" class="word-search-label">Edit Star: </label><br>
                   </li>
                   <li class="for-inline-input">
-                    <select type="select" name="input-star" id="input-star" class="input-search-label">
+                    <select type="select" name="input-star" id="input-star" class="input-search-label" required>
                       {{#each data}}
                       <option value="{{this.starName}}">{{this.starName}}
                       </option>
@@ -180,19 +172,19 @@
                   <li>
                     <div class="input-element">
                       <label for="input-starNameNew"></label>
-                      <input type="text" name ="input-starNameNew" id="input-starNameNew" placeholder="Update Name..." class = "starType">
+                      <input type="text" name ="input-starNameNew" id="input-starNameNew" placeholder="Update Name..." class = "starType" required>
                     </div>
                   </li>
                   <li>
                     <div class="input-element">
                       <label for="input-starType"></label>
-                      <input type="text" name ="input-starType" id="input-starType" placeholder="Update type..." class = "starType">
+                      <input type="text" name ="input-starType" id="input-starType" placeholder="Update type..." class = "starType" required>
                     </div>
                   </li>
                   <li>
                     <div class="input-element">
                       <label for="input-starTemp"></label>
-                      <input type="text" name ="input-starTemp" id="input-starTemp" placeholder="Update temperature..." class = "starTemp">
+                      <input type="text" name ="input-starTemp" id="input-starTemp" placeholder="Update temperature..." class = "starTemp" required>
                     </div>
                   </li>
                   <li class="for-inline-input">
