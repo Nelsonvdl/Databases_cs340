@@ -57,7 +57,7 @@
 
                 <tr>
                   <td>{{this.galaxyID}}</td>
-                  <td>{{this.galaxyName}}</td>
+                  <td>{{#if this.galaxyName}}{{this.galaxyName}}{{else}}Null{{/if}}</td>
                 </tr>
               {{/each}}
           </tbody>

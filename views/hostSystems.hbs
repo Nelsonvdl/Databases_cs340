@@ -57,9 +57,9 @@
               {{#each data}}
 
               <tr>
-                  <td>{{this.hostSystemID}}
-                  <td>{{this.hostSystemName}}</td>
-                  <td>{{this.galaxyName}}
+                  <td>{{this.hostSystemID}}</td>
+                  <td>{{#if this.hostSystemName}}{{this.hostSystemName}}{{else}}Null{{/if}}</td>
+                  <td>{{#if this.galaxyName}}{{this.galaxyName}}{{else}}Null{{/if}}</td>
               </tr>
               {{/each}}
           </tbody>

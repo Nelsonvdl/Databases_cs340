@@ -67,10 +67,10 @@
                   <td>{{this.planetID}}</td>
                   <td>{{this.hostSystemName}}</td>
                   <td>{{this.exoplanetName}}</td>
-                  <td>{{this.numberOfStars}}</td>
-                  <td>{{this.mass}}</td>
-                  <td>{{this.orbitalPeriod}}</td>
-                  <td>{{this.discovery}}</td>
+                  <td>{{#if this.numberOfStars}}{{this.numberOfStars}}{{else}}Null{{/if}}</td>
+                  <td>{{#if this.mass}}{{this.mass}}{{else}}Null{{/if}}</td>
+                  <td>{{#if this.orbitalPeriod}}{{this.orbitalPeriod}}{{else}}Null{{/if}}</td>
+                  <td>{{#if this.discovery}}{{this.discovery}}{{else}}Null{{/if}}</td>
                 </tr>
               {{/each}}
           </tbody>
